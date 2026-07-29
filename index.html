@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dev Gninoue — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="professionnel">
+
+<div class="fond-anime" aria-hidden="true">
+  <span class="particule p1"></span>
+  <span class="particule p2"></span>
+  <span class="particule p3"></span>
+  <span class="particule p4"></span>
+  <span class="particule p5"></span>
+  <span class="particule p6"></span>
+  <span class="particule p7"></span>
+  <span class="particule p8"></span>
+</div>
+
+<header class="entete-site" id="enteteSite">
+  <div class="entete-conteneur">
+
+    <a href="#accueil" class="logo">
+      <span class="logo-crochet">&lt;</span><span class="logo-texte">Dev<span class="logo-point">.</span>Gninoue</span><span class="logo-curseur">|</span><span class="logo-crochet">/&gt;</span>
+    </a>
+
+    <button class="bouton-menu" id="boutonMenu" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-principale" id="navPrincipale">
+      <ul class="liens-nav">
+        <li><a href="#apropos" class="lien-nav"><span class="index-nav">01</span><span data-i18n="nav.apropos">À propos</span></a></li>
+        <li><a href="#competences" class="lien-nav"><span class="index-nav">02</span><span data-i18n="nav.competences">Compétences</span></a></li>
+        <li><a href="#projets" class="lien-nav"><span class="index-nav">03</span><span data-i18n="nav.projets">Projets</span></a></li>
+        <li><a href="#contact" class="lien-nav"><span class="index-nav">04</span><span data-i18n="nav.contact">Me contacter</span></a></li>
+      </ul>
+
+      <div class="controles-nav">
+
+        <div class="menu-deroulant" id="menuLangue">
+          <button class="bouton-controle" id="boutonLangue" aria-expanded="false">
+            <i class="fa-solid fa-globe icone-controle"></i>
+            <span id="langueActuelle">FR</span>
+            <i class="fa-solid fa-chevron-down chevron"></i>
+          </button>
+          <ul class="liste-deroulante" role="menu">
+            <li><button data-langue="fr" class="option-deroulante active">Français</button></li>
+            <li><button data-langue="en" class="option-deroulante">English</button></li>
+          </ul>
+        </div>
+
+        <div class="menu-deroulant" id="menuTheme">
+          <button class="bouton-controle" id="boutonTheme" aria-expanded="false">
+            <i class="fa-solid fa-palette icone-controle"></i>
+            <span id="themeActuel">Professionnel</span>
+            <i class="fa-solid fa-chevron-down chevron"></i>
+          </button>
+          <ul class="liste-deroulante" role="menu">
+            <li><button data-choix-theme="professionnel" class="option-deroulante active" data-i18n="theme.professionnel">Professionnel</button></li>
+            <li><button data-choix-theme="gaming" class="option-deroulante" data-i18n="theme.gaming">Gaming</button></li>
+            <li><button data-choix-theme="personnel" class="option-deroulante" data-i18n="theme.personnel">Style personnel</button></li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+
+  </div>
+  <div class="lueur-entete"></div>
+</header>
+
+
+<main>
+
+  <!--  ACCUEIL  -->
+  <section id="accueil" class="section-accueil">
+    <div class="accueil-conteneur">
+
+      <div class="accueil-texte">
+        <p class="accueil-salutation" data-i18n="accueil.salutation">Bienvenue sur mon portfolio</p>
+        <h1 class="accueil-titre"><span data-i18n="accueil.jesuis">Je suis</span> <br>
+          <span class="accueil-nom">Gninoue Jean-Marc</span></h1>
+        <p class="accueil-role" data-i18n-html="accueil.role">Développeur <span class="role-accent">Full Stack</span> Junior</p>
+        <p class="accueil-langage"><i class="fa-solid fa-code"></i> <span data-i18n="accueil.langage">Langage favori :</span> <strong>C++</strong></p>
+
+        <div class="accueil-actions">
+          <a href="#projets" class="bouton-action bouton-principal" data-i18n="accueil.bouton-projets">Voir mes projets</a>
+          <a href="https://github.com/gninoue-dev" target="_blank" rel="noopener" class="bouton-action bouton-secondaire">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="accueil-visuel">
+        <div class="carte-photo">
+          <img src="res/photo.jpg" alt="Photo de Gninoue Jean-Marc" class="photo-profil">
+          <span class="badge-flottant badge-experience">
+            <span class="badge-chiffre" data-compteur="2">0</span>
+            <span class="badge-libelle" data-i18n="badge.experience">Ans d'expérience</span>
+          </span>
+          <span class="badge-flottant badge-projets">
+            <span class="badge-chiffre" data-compteur="9">0</span>
+            <span class="badge-libelle" data-i18n="badge.projets">Projets réalisés</span>
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="separateur-vague" aria-hidden="true">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z"></path></svg>
+    </div>
+  </section>
+
+  <!-- ============ À PROPOS ============ -->
+ <section id="apropos" class="section-apropos">
+  <p class="etiquette-section" data-i18n="apropos.titre">À propos de moi</p>
+
+  <div class="apropos-conteneur">
+    <div class="carte-identite">
+      <h3 class="identite-nom">Gninoue<br>Jean-Marc</h3>
+      <div class="identite-separateur"></div>
+      <p class="identite-role" data-i18n-html="apropos.role">Dev. Full Stack<br>Junior</p>
+    </div>
+
+    <p data-i18n="apropos.p1">Passionné par l'informatique et les jeux vidéo depuis l'enfance, j'ai naturellement choisir de transformer cette passion en veritable projet professionnel.
+      Après l'obtention de mon baccalauréat, j'ai intégré la fillière Informatique et Génie Logiciel, domaine dans lequel je poursuis actuellment ma deuxième année de licence.</p>
+    <p data-i18n="apropos.p2">En tant que développeur Full Stack junior, je conçois et developpe des sites web, Applications, Bases de données, de la conception a la mise en production.
+      j'aime transformer des idées en solutions concrètes, fonctionneles et intuitives.
+    </p>
+    <p data-i18n="apropos.p3">Au-dela du développment, je m'intéresse également a d'autre domaines tels que le graphisme, la modélisation 3D, le montage vidéo et la maintenance informatique.
+      Ces compétences, que je developpe en complément de mes connaissances en programmation, me permettent de créér des projets plus complets en associant la technologie, la créactivité et la technique.
+    </p>
+  </div>
+</section>
+
+<!-- ============ COMPÉTENCES ============ -->
+<section id="competences" class="section-competences">
+  <p class="etiquette-section" data-i18n="competences.titre">Mes compétences</p>
+  <div class="grille-competences" id="grilleCompetences"></div>
+</section>
+
+<!-- ============ PROJETS ============ -->
+<section id="projets" class="section-projets">
+  <p class="etiquette-section" data-i18n="projets.titre">Mes projets</p>
+  <div class="grille-projets" id="grilleProjets"></div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="section-contact">
+  <p class="etiquette-section" data-i18n="contact.titre">Me contacter</p>
+
+  <div class="contact-conteneur">
+    <div class="contact-intro">
+      <p class="contact-disponibilite">
+        <span class="point-dispo"></span>
+        <span data-i18n="contact.dispo">Disponible pour des stages, des projets freelance rénumeré.</span>
+      </p>
+      <ul class="contact-infos">
+        <li><i class="fa-solid fa-envelope"></i> <a href="mailto:Devgninoue@gmail.com">Devgninoue@gmail.com</a></li>
+        <li><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/2250103508128" target="_blank" rel="noopener">+225 01 03 50 81 28</a></li>
+        <li><i class="fa-brands fa-github"></i> <a href="https://github.com/gninoue-dev" target="_blank" rel="noopener">github.com/gninoue-dev</a></li>
+      </ul>
+    </div>
+
+    <form class="formulaire-contact" id="formulaireContact">
+  <h3 class="formulaire-titre" data-i18n="contact.formulaire-titre">M'envoyer un email</h3>
+
+  <div class="champ-groupe">
+    <label for="nomContact" data-i18n="contact.label-nom">Nom</label>
+    <input type="text" id="nomContact" name="Nom" required>
+  </div>
+      <div class="champ-groupe">
+        <label for="emailContact" data-i18n="contact.label-email">Email</label>
+        <input type="email" id="emailContact" name="Email" required>
+      </div>
+      <div class="champ-groupe">
+        <label for="messageContact" data-i18n="contact.label-message">Message</label>
+        <textarea id="messageContact" name="Message" rows="5" required></textarea>
+      </div>
+
+      <button type="submit" class="bouton-action bouton-principal" id="boutonEnvoyer">
+        <i class="fa-solid fa-paper-plane"></i> <span data-i18n="contact.bouton-envoyer">Envoyer le message</span>
+      </button>
+      <p class="statut-envoi" id="statutEnvoi"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ CHANGER DE THÈME ============ -->
+<section class="section-changer-theme">
+  <button class="bouton-changer-theme" id="boutonChangerTheme">
+    <i class="fa-solid fa-shuffle"></i>
+    <span data-i18n="theme-bouton.changer">Essayer un autre thème du portfolio</span>
+  </button>
+</section>
+
+</main>
+<!-- ============ FOOTER ============ -->
+<footer class="pied-page">
+  <div class="pied-conteneur">
+
+    <div class="pied-haut">
+      <a href="#accueil" class="logo pied-logo">
+        <span class="logo-crochet">&lt;</span><span class="logo-texte">Dev<span class="logo-point">.</span>Gninoue</span><span class="logo-curseur">|</span><span class="logo-crochet">/&gt;</span>
+      </a>
+      <a href="res/cv-gninoue-jean-marc.pdf" download class="bouton-action bouton-principal">
+        <i class="fa-solid fa-download"></i> <span data-i18n="footer.cv">Télécharger mon CV</span>
+      </a>
+    </div>
+
+    <div class="pied-milieu">
+      <nav class="pied-liens">
+        <a href="#accueil" data-i18n="nav.accueil">Accueil</a>
+        <a href="#apropos" data-i18n="nav.apropos">À propos</a>
+        <a href="#competences" data-i18n="nav.competences">Compétences</a>
+        <a href="#projets" data-i18n="nav.projets">Projets</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+
+      <div class="pied-reseaux">
+        <a href="https://linkedin.com/in/TON_PROFIL" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://github.com/gninoue-dev" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://facebook.com/TON_PROFIL" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://tiktok.com/@TON_PSEUDO" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://instagram.com/TON_PSEUDO" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <div class="pied-bas">
+      <p>&copy; <span id="anneeCourante"></span> Gninoue Jean-Marc — <span data-i18n="footer.droits">Tous droits réservés.</span></p>
+    </div>
+
+  </div>
+</footer>
+<!--bulle whatsapp-->
+<a href="https://wa.me/2250103508128?text=Bonjour%2C%20je%20vous%20contacte%20depuis%20votre%20portfolio"
+   target="_blank" rel="noopener" class="bulle-whatsapp" aria-label="Me contacter sur WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+  <span class="anneau-pulse"></span>
+</a>
+<script src="js/script.js"></script>
+</body>
+</html>
