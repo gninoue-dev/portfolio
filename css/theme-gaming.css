@@ -608,6 +608,7 @@ body[data-theme="gaming"] ::selection{ background: var(--jeu-rose); color: #fff;
   border-radius: 4px;
 }
 .jeu-etiquette-termine{ color: var(--jeu-vert); border-color: var(--jeu-vert); }
+.jeu-etiquette-vedette{ color: #1a1230; background: var(--jeu-or); border-color: var(--jeu-or); }
 .jeu-etiquette-encours{ color: var(--jeu-or); border-color: var(--jeu-or); }
 .jeu-technos{ list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
 .jeu-technos li{

@@ -40,8 +40,12 @@
             </h1>
             <p class="pro-role pro-entree" data-i18n-html="pro.role"></p>
             <p class="pro-accroche pro-entree" data-i18n="pro.accroche"></p>
-            <p class="pro-langage pro-entree"><i class="fa-solid fa-code" aria-hidden="true"></i>
-              <span data-i18n="pro.langage"></span> <strong>${p.langageFavori}</strong></p>
+            <p class="pro-pastilles pro-entree">
+              <span class="pro-langage"><i class="fa-solid fa-code" aria-hidden="true"></i>
+                <span data-i18n="pro.langage"></span> <strong>${p.langageFavori}</strong></span>
+              <span class="pro-langage"><i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                <span class="pro-ville">${tr(p.ville)}</span></span>
+            </p>
             <div class="pro-actions pro-entree">
               <a href="#projets" data-section="projets" class="bouton-action bouton-principal">
                 <span data-i18n="pro.bouton-projets"></span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
@@ -61,7 +65,7 @@
                 <img src="${p.photo}" data-i18n-alt="pro.photo-alt" class="pro-photo" width="720" height="720" fetchpriority="high">
               </picture>
               <span class="pro-badge pro-badge-experience">
-                <span class="pro-badge-chiffre" data-compteur="${p.anneesExperience}">0</span>
+                <span class="pro-badge-chiffre" data-compteur="${anneesExperience()}">0</span>
                 <span class="pro-badge-libelle" data-i18n="pro.badge-experience"></span>
               </span>
               <span class="pro-badge pro-badge-projets">
@@ -97,7 +101,7 @@
               <dl class="pro-chiffres">
                 <div><dt data-i18n="apropos.chiffre-projets"></dt><dd data-compteur="${donnees.projets.length}">0</dd></div>
                 <div><dt data-i18n="apropos.chiffre-competences"></dt><dd data-compteur="${donnees.competences.length}">0</dd></div>
-                <div><dt data-i18n="apropos.chiffre-annees"></dt><dd data-compteur="${p.anneesExperience}">0</dd></div>
+                <div><dt data-i18n="apropos.chiffre-annees"></dt><dd data-compteur="${anneesExperience()}">0</dd></div>
               </dl>
             </aside>
           </div>
@@ -139,6 +143,8 @@
                   <span><small data-i18n="contact.whatsapp"></small>${donnees.liens.whatsappAffiche}</span></a></li>
                 <li><a href="${donnees.liens.github}" target="_blank" rel="noopener"><span class="pro-contact-icone"><i class="fa-brands fa-github" aria-hidden="true"></i></span>
                   <span><small data-i18n="contact.github"></small>github.com/gninoue-dev</span></a></li>
+                <li><span class="pro-contact-ligne"><span class="pro-contact-icone"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span>
+                  <span><small data-i18n="contact.localisation"></small><span class="pro-ville">${tr(p.ville)}</span></span></span></li>
               </ul>
             </div>
 
@@ -241,10 +247,11 @@
         ? `<a href="${projet.lienDemo}" target="_blank" rel="noopener" class="pro-lien-projet pro-lien-demo"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> ${t('projets.demo')}</a>`
         : '';
       return `
-        <article class="pro-carte-projet pro-revele" style="--delai:${(index % 3) * 80}ms">
+        <article class="pro-carte-projet pro-revele${projet.vedette ? ' pro-projet-vedette' : ''}" style="--delai:${(index % 3) * 80}ms">
           <div class="pro-projet-image">
             ${visuel}
             <span class="pro-badge-statut pro-statut-${projet.statut}">${t(`projets.${projet.statut}`)}</span>
+            ${projet.vedette ? `<span class="pro-badge-vedette"><i class="fa-solid fa-star" aria-hidden="true"></i> ${t('projets.vedette')}</span>` : ''}
           </div>
           <div class="pro-projet-contenu">
             <p class="pro-projet-categorie"><i class="${ICONES_CATEGORIES[projet.categorie]}" aria-hidden="true"></i> ${t(`categorie.${projet.categorie}`)}</p>
@@ -381,6 +388,7 @@
 
     changerLangue() {
       if (!zoneCourante) return;
+      zoneCourante.querySelectorAll('.pro-ville').forEach(el => { el.textContent = tr(donnees.profil.ville); });
       rendreCompetences();
       rendreFiltres();
       rendreProjets();

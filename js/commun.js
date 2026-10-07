@@ -50,6 +50,16 @@ function tr(valeur) {
   return valeur || '';
 }
 
+// Années d'expérience calculées depuis l'année de début (donnees.js)
+function anneesExperience() {
+  return Math.max(1, new Date().getFullYear() - donnees.profil.anneeDebut);
+}
+
+// Liste de valeurs (textes ou objets { fr, en }) dans la langue courante
+function listeTraduite(valeurs) {
+  return (valeurs || []).map(tr).filter(Boolean).join(', ');
+}
+
 function echapperHtml(texte) {
   return String(texte)
     .replace(/&/g, '&amp;')

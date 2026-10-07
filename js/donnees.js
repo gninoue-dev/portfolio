@@ -11,15 +11,30 @@ const donnees = {
     nomComplet: 'Gninoue Jean-Marc',
     prenom: 'Jean-Marc',
     pseudo: 'Dev Gninoue',
+    pseudoJeu: 'OZEN', // pseudo en jeu et en montage vidéo
     photo: 'res/photo-profil-720.jpg',
     photoWebp: 'res/photo-profil-720.webp',
     langageFavori: 'C++',
-    anneesExperience: 2,
-    // Infos personnelles non encore fournies par Dev (QUESTIONS.md)
-    ville: '',
-    citation: { fr: '', en: '' },
-    animesFavoris: [],
-    jeuxFavoris: []
+    // Les années d'expérience se calculent depuis cette année de début
+    anneeDebut: 2024,
+    ville: { fr: "Abidjan, Côte d'Ivoire", en: 'Abidjan, Ivory Coast' },
+    personnalite: {
+      fr: "Je suis quelqu'un qui aime apprendre et découvrir de nouvelles choses : en bref, un curieux.",
+      en: 'I love learning and discovering new things: in short, a curious mind.'
+    },
+    citation: {
+      fr: "La vie est comme un MMORPG : amasse plein de skills et tu n'en seras pas déçu.",
+      en: "Life is like an MMORPG: stack up plenty of skills and you won't be disappointed."
+    },
+    animesFavoris: [
+      { fr: "L'Attaque des Titans", en: 'Attack on Titan' },
+      'Hajime no Ippo', 'Re:Zero', 'Monster', 'Death Note', 'Erased'
+    ],
+    jeuxFavoris: [
+      'Watch Dogs', 'GTA San Andreas',
+      { fr: 'God of War (I à III)', en: 'God of War (I to III)' }
+    ],
+    personnagesTekken: ['Bob', 'Nina']
   },
 
   liens: {
@@ -36,6 +51,9 @@ const donnees = {
     formulaire: 'https://formsubmit.co/ajax/Devgninoue@gmail.com'
   },
 
+  // ---------- Ajouter une compétence ----------
+  // Une ligne suffit : elle apparaît dans les 3 thèmes (et devient une
+  // orbe de plus dans le jeu). Icônes : https://fontawesome.com/search?o=r&m=free
   // categorie : web | logiciel | jeu | creation | outil
   // niveau : debutant | intermediaire | expert
   competences: [
@@ -48,6 +66,7 @@ const donnees = {
     { nom: 'MySQL / SQL', icone: 'fa-solid fa-database', niveau: 'intermediaire', categorie: 'web' },
     { nom: 'C', icone: 'fa-solid fa-code', niveau: 'intermediaire', categorie: 'logiciel' },
     { nom: 'C++', icone: 'fa-solid fa-code', niveau: 'intermediaire', categorie: 'logiciel' },
+    { nom: 'Python', icone: 'fa-brands fa-python', niveau: 'debutant', categorie: 'logiciel' },
     { nom: 'Kotlin', icone: 'fa-solid fa-mobile-screen-button', niveau: 'debutant', categorie: 'logiciel' },
     { nom: 'GDScript', icone: 'fa-solid fa-gamepad', niveau: 'debutant', categorie: 'jeu' },
     { nom: 'Blender', icone: 'fa-solid fa-cube', niveau: 'debutant', categorie: 'jeu' },
@@ -60,14 +79,30 @@ const donnees = {
   // statut : termine | encours
   // categorie : jeu | web | ia | outil
   // nom : texte simple ou { fr, en }
+  // vedette : true pour le projet phare (affiché en premier, avec un badge)
   // image : '' tant que la capture n'est pas fournie (RESSOURCES.md)
   projets: [
+    {
+      id: 'projet-web',
+      nom: { fr: 'Projet web de fin de module', en: 'End-of-module web project' },
+      description: {
+        fr: 'Mon projet phare : le projet de fin de module de développement web et mobile, en licence 2.',
+        en: 'My flagship project: the end-of-module web and mobile development project, second year of bachelor.'
+      },
+      technos: ['JavaScript'],
+      categorie: 'web',
+      image: '',
+      lienCode: 'https://github.com/gninoue-dev/projet_web_fin_module',
+      lienDemo: '',
+      statut: 'encours',
+      vedette: true
+    },
     {
       id: 'zaomon',
       nom: 'Zaomon',
       description: {
-        fr: "Jeu d'action-plateforme : un guerrier guéré récupère cinq masques ancestraux pour sauver son village de l'esprit maléfique Duga. Combos à trois coups et sprites pixel art retravaillés.",
-        en: 'Action platformer: a Guéré warrior recovers five ancestral masks to save his village from the evil spirit Duga. Three-hit combos and reworked pixel art sprites.'
+        fr: "Jeu d'action-plateforme en cours de développement : combos à trois coups et sprites pixel art retravaillés. L'histoire reste secrète jusqu'à la sortie.",
+        en: 'Action platformer in development: three-hit combos and reworked pixel art sprites. The story stays secret until release.'
       },
       technos: ['Godot 4', 'GDScript', 'Blender'],
       categorie: 'jeu',
@@ -133,20 +168,6 @@ const donnees = {
       statut: 'termine'
     },
     {
-      id: 'ozen',
-      nom: 'Bot Ozen MD Panel',
-      description: {
-        fr: 'Bot ludique pensé pour tourner sur de petits hébergeurs à panneau, comme Katabump.',
-        en: 'A fun bot designed to run on small panel-based hosts such as Katabump.'
-      },
-      technos: ['JavaScript', 'Node.js'],
-      categorie: 'outil',
-      image: '',
-      lienCode: 'https://github.com/gninoue-dev/Bot-Ozen-MD-panel',
-      lienDemo: '',
-      statut: 'termine'
-    },
-    {
       id: 'focusflow',
       nom: 'FocusFlow',
       description: {
@@ -157,20 +178,6 @@ const donnees = {
       categorie: 'outil',
       image: '',
       lienCode: 'https://github.com/gninoue-dev/FocusFlow',
-      lienDemo: '',
-      statut: 'encours'
-    },
-    {
-      id: 'projet-web',
-      nom: { fr: 'Projet web de fin de module', en: 'End-of-module web project' },
-      description: {
-        fr: 'Projet de fin de module de développement web et mobile, en licence 2.',
-        en: 'End-of-module web and mobile development project, second year of bachelor.'
-      },
-      technos: ['JavaScript'],
-      categorie: 'web',
-      image: '',
-      lienCode: 'https://github.com/gninoue-dev/projet_web_fin_module',
       lienDemo: '',
       statut: 'encours'
     },

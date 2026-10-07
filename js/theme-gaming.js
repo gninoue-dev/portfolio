@@ -246,6 +246,7 @@
         <p class="jeu-modale-sur"><i class="fa-solid fa-monument" aria-hidden="true"></i> ${t('jeu.stele-progression', { n: vues, total })}</p>
         <h2 class="jeu-modale-titre" id="jeuModaleTitre">${tr(projet.nom)}</h2>
         <p class="jeu-projet-meta">
+          ${projet.vedette ? `<span class="jeu-etiquette jeu-etiquette-vedette"><i class="fa-solid fa-star" aria-hidden="true"></i> ${t('projets.vedette')}</span>` : ''}
           <span class="jeu-etiquette jeu-etiquette-${projet.statut}">${t(`projets.${projet.statut}`)}</span>
           <span class="jeu-etiquette"><i class="${ICONES_CATEGORIES[projet.categorie]}" aria-hidden="true"></i> ${t(`categorie.${projet.categorie}`)}</span>
         </p>
@@ -491,6 +492,7 @@
           <p class="jeu-lecture-sur">${t('jeu.lecture-titre')}</p>
           <h2 class="jeu-lecture-nom">${p.nomComplet}</h2>
           <p class="jeu-lecture-role">${t('profil.role-court')} · ${t('pro.langage')} <strong>${p.langageFavori}</strong></p>
+          <p class="jeu-lecture-intro"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> ${tr(p.ville)} · <i class="fa-solid fa-gamepad" aria-hidden="true"></i> ${p.pseudoJeu}</p>
           <p class="jeu-lecture-intro">${t('jeu.lecture-intro')}</p>
         </div>
       </header>
@@ -531,6 +533,7 @@
           ${donnees.projets.map(projet => `
             <article class="jeu-carte-projet">
               <p class="jeu-projet-meta">
+                ${projet.vedette ? `<span class="jeu-etiquette jeu-etiquette-vedette"><i class="fa-solid fa-star" aria-hidden="true"></i> ${t('projets.vedette')}</span>` : ''}
                 <span class="jeu-etiquette jeu-etiquette-${projet.statut}">${t(`projets.${projet.statut}`)}</span>
                 <span class="jeu-etiquette"><i class="${ICONES_CATEGORIES[projet.categorie]}" aria-hidden="true"></i> ${t(`categorie.${projet.categorie}`)}</span>
               </p>

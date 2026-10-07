@@ -49,7 +49,7 @@
 - Aucun émoji, aucun dégradé dans le thème Professionnel, code en français.
 
 ## Ce qui reste à faire (par Dev)
-- Répondre à `QUESTIONS.md` (liens sociaux, goûts personnels, statut de certains projets, compétences Python/Java).
+- Les réponses de `QUESTIONS.md` sont intégrées. Il reste 4 précisions en bas du fichier : URL d'ExamSecure et de TP PRAD 1, adresse TikTok, LinkedIn, "Kylian".
 - Déposer les fichiers listés dans `RESSOURCES.md` (CV PDF, captures des projets).
 - Activer FormSubmit : le premier message envoyé déclenche un email de confirmation à valider.
 - Tester une fois sur un vrai téléphone : le tactile a été vérifié en émulation, pas sur un appareil réel.

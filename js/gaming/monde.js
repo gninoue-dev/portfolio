@@ -143,18 +143,21 @@
     });
     reserver(18, 16, 2);
 
-    // Forêt des savoirs (Compétences) : orbes
+    // Forêt des savoirs (Compétences) : une orbe par compétence de donnees.js
     const orbes = [];
     const positionsOrbes = [];
+    const nombreOrbes = donnees.competences.length;
     let essais = 0;
-    while (positionsOrbes.length < 16 && essais < 4000) {
+    let ecartMin = 3.2;
+    while (positionsOrbes.length < nombreOrbes && essais < 8000) {
       essais++;
+      if (essais % 2000 === 0) ecartMin = Math.max(1.5, ecartMin - 0.6); // forêt pleine : on resserre
       const angle = alea() * Math.PI * 2;
       const rayon = 2 + alea() * (ZONES.foret.r - 1);
       const tx = Math.round(ZONES.foret.x + Math.cos(angle) * rayon * 1.15);
       const ty = Math.round(ZONES.foret.y + Math.sin(angle) * rayon * 0.85);
       if (tuile(tx, ty) !== SOL.herbe && tuile(tx, ty) !== SOL.chemin) continue;
-      if (positionsOrbes.some(([x, y]) => distance(x, y, tx, ty) < 3.2)) continue;
+      if (positionsOrbes.some(([x, y]) => distance(x, y, tx, ty) < ecartMin)) continue;
       // jamais au bord de l'eau
       let presEau = false;
       for (let dy = -2; dy <= 2; dy++) for (let dx = -2; dx <= 2; dx++) if (tuile(tx + dx, ty + dy) === SOL.eau) presEau = true;
@@ -171,9 +174,9 @@
       reserver(tx, ty, 1);
     });
 
-    // Ruines des projets : stèles en cercle
+    // Ruines des projets : une stèle par projet de donnees.js, en cercle
     const steles = [];
-    const nombreSteles = 10;
+    const nombreSteles = donnees.projets.length;
     for (let i = 0; i < nombreSteles; i++) {
       const angle = -Math.PI / 2 + (i / nombreSteles) * Math.PI * 2 + Math.PI / nombreSteles;
       const x = centre(ZONES.ruines.x) + Math.cos(angle) * 84;

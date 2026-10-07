@@ -76,3 +76,13 @@ Décisions :
 - GSAP 3.12.5 + ScrollTrigger depuis cdnjs, chargés seulement quand ce thème est actif ; si le CDN échoue, IntersectionObserver prend le relais.
 - Les champs intimes de la fiche personnage (animes et mangas, jeux préférés, devise) affichent "À débloquer" tant que Dev n'a pas répondu dans `QUESTIONS.md` ; il suffit de remplir `donnees.profil`.
 - La photo est passée en noir et blanc contrasté avec une trame rouge (CSS uniquement, l'image n'est pas modifiée).
+
+## 5. Intégration des réponses de Dev (7 octobre 2026)
+
+- Citation reformulée sans changer le sens ("Massasse" lu comme "amasse") : "La vie est comme un MMORPG : amasse plein de skills et tu n'en seras pas déçu."
+- 6 animes affichés (Dev en a donné 6, la question en demandait 3) : tous conservés.
+- "Projet a supprimé puisque ozen-md est déjà là" interprété comme : retirer Bot Ozen MD Panel des projets.
+- ZAOMON : "que tout reste secret" appliqué aussi à la fiche projet (histoire retirée de la description, le dépôt reste lié).
+- "Tekken (ya Bob et Nina)" interprété comme ses personnages principaux ; "Kylian" non affiché en attendant une précision.
+- Le jeu génère désormais une orbe par compétence et une stèle par projet à partir de `donnees.js` (17 orbes, 9 stèles aujourd'hui).
+- ExamSecure et TP PRAD 1 : introuvables sur GitHub malgré la réponse "public", donc "Code privé" en attendant les URL.

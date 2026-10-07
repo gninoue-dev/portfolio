@@ -41,11 +41,31 @@
     return `<svg class="perso-vitesse" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${lignes}</svg>`;
   }
 
-  function reserve(valeur, cle) {
+  function reserve(valeur) {
     // information personnelle non fournie : espace réservé assumé
-    return valeur && (Array.isArray(valeur) ? valeur.length : tr(valeur))
-      ? echapperHtml(Array.isArray(valeur) ? valeur.join(', ') : tr(valeur))
-      : `<span class="perso-verrou" title="${t('perso.a-debloquer')}"><i class="fa-solid fa-lock" aria-hidden="true"></i> ${t(cle || 'perso.a-debloquer')}</span>`;
+    const texte = Array.isArray(valeur) ? listeTraduite(valeur) : tr(valeur);
+    return texte
+      ? echapperHtml(texte)
+      : `<span class="perso-verrou"><i class="fa-solid fa-lock" aria-hidden="true"></i> ${t('perso.a-debloquer')}</span>`;
+  }
+
+  // Lignes de la fiche personnage (reconstruites au changement de langue)
+  function lignesFiche() {
+    const p = donnees.profil;
+    return [
+      ['perso.fiche-nom', echapperHtml(p.nomComplet)],
+      ['perso.fiche-pseudo', t('perso.fiche-pseudo-valeur')],
+      ['perso.fiche-classe', t('profil.role-court')],
+      ['perso.fiche-niveau', t('apropos.etudes')],
+      ['perso.fiche-origine', reserve(p.ville)],
+      ['perso.fiche-arme', echapperHtml(p.langageFavori)],
+      ['perso.fiche-quete', t('apropos.objectif')],
+      ['perso.fiche-personnalite', reserve(p.personnalite)],
+      ['perso.fiche-animes', reserve(p.animesFavoris)],
+      ['perso.fiche-jeux', reserve(p.jeuxFavoris)],
+      ['perso.fiche-tekken', reserve(p.personnagesTekken)],
+      ['perso.fiche-devise', reserve(p.citation)]
+    ].map(([cle, valeur]) => `<div${cle === 'perso.fiche-devise' ? ' class="perso-fiche-devise"' : ''}><dt>${t(cle)}</dt><dd>${valeur}</dd></div>`).join('');
   }
 
   // ============================================
@@ -62,7 +82,7 @@
 
         <div class="perso-couverture-grille">
           <div class="perso-couverture-texte">
-            <p class="perso-tampon"><span data-i18n="perso.volume"></span> <strong>01</strong></p>
+            <p class="perso-tampon"><span data-i18n="perso.volume"></span> <strong>01</strong> <span class="perso-alias">a.k.a. ${p.pseudoJeu}</span></p>
             <h1 class="perso-titre" id="persoTitre">
               <span class="perso-glitch" data-texte="GNINOUE">GNINOUE</span>
               <span class="perso-glitch perso-glitch-rouge" data-texte="JEAN-MARC">JEAN&#8209;MARC</span>
@@ -119,16 +139,7 @@
 
           <aside class="perso-case perso-fiche perso-anime" aria-labelledby="persoFicheTitre">
             <h3 id="persoFicheTitre"><i class="fa-solid fa-id-card" aria-hidden="true"></i> <span data-i18n="perso.fiche"></span></h3>
-            <dl>
-              <div><dt data-i18n="perso.fiche-nom"></dt><dd>${p.nomComplet}</dd></div>
-              <div><dt data-i18n="perso.fiche-classe"></dt><dd data-i18n="profil.role-court"></dd></div>
-              <div><dt data-i18n="perso.fiche-niveau"></dt><dd data-i18n="apropos.etudes"></dd></div>
-              <div><dt data-i18n="perso.fiche-arme"></dt><dd>${p.langageFavori}</dd></div>
-              <div><dt data-i18n="perso.fiche-quete"></dt><dd data-i18n="apropos.objectif"></dd></div>
-              <div><dt data-i18n="perso.fiche-animes"></dt><dd>${reserve(p.animesFavoris)}</dd></div>
-              <div><dt data-i18n="perso.fiche-jeux"></dt><dd>${reserve(p.jeuxFavoris)}</dd></div>
-              <div><dt data-i18n="perso.fiche-devise"></dt><dd>${reserve(p.citation)}</dd></div>
-            </dl>
+            <dl id="persoFicheLignes">${lignesFiche()}</dl>
           </aside>
         </div>
       </section>
@@ -264,6 +275,7 @@
           </div>
           <div class="perso-volume-contenu">
             <p class="perso-volume-meta">
+              ${projet.vedette ? `<span class="perso-vedette"><i class="fa-solid fa-star" aria-hidden="true"></i> ${t('projets.vedette')}</span>` : ''}
               <span class="perso-statut-${projet.statut}">${t(`projets.${projet.statut}`)}</span>
               <span>${t(`categorie.${projet.categorie}`)}</span>
             </p>
@@ -413,12 +425,7 @@
       rendreCompetences();
       rendreEtagere();
       zone.querySelectorAll('#persoEtagere .perso-anime').forEach(el => { el.classList.add('visible'); el.style.opacity = 1; });
-      // les espaces réservés de la fiche sont reconstruits
-      const p = donnees.profil;
-      const valeurs = zone.querySelectorAll('.perso-fiche dd');
-      valeurs[5].innerHTML = reserve(p.animesFavoris);
-      valeurs[6].innerHTML = reserve(p.jeuxFavoris);
-      valeurs[7].innerHTML = reserve(p.citation);
+      $('#persoFicheLignes').innerHTML = lignesFiche();
       lancerTerminal();
     }
   });
