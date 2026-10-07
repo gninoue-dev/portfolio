@@ -1,642 +1,948 @@
 /* ============================================
    THÈME PROFESSIONNEL
-   Toutes les sections ci-dessous n'ont de sens
-   que pour ce thème — masquées sur les autres.
+   Bleu nuit / bleu / blanc, couleurs pleines uniquement
+   (aucun dégradé). Toutes les règles sont scopées sous
+   body[data-theme="professionnel"].
    ============================================ */
-body:not([data-theme="professionnel"]) .section-accueil,
-body:not([data-theme="professionnel"]) .section-apropos,
-body:not([data-theme="professionnel"]) .section-competences,
-body:not([data-theme="professionnel"]) .section-projets,
-body:not([data-theme="professionnel"]) .section-contact,
-body:not([data-theme="professionnel"]) .section-changer-theme{
-  display: none;
+body[data-theme="professionnel"]{
+  --pro-fond: #060B16;
+  --pro-fond-alt: #0A1222;
+  --pro-carte: #0F1A2E;
+  --pro-carte-survol: #13213A;
+  --pro-bordure: #1D2C47;
+  --pro-bordure-forte: #2A3F63;
+  --pro-texte: #C9D4E6;
+  --pro-texte-doux: #93A4C3;
+  --pro-blanc: #FFFFFF;
+  --pro-bleu: #0F5FB0;
+  --pro-bleu-moyen: #3B9DE8;
+  --pro-bleu-clair: #7FC1FF;
+  --pro-vert: #4ADE80;
+  --pro-ambre: #FBBF24;
+  --pro-rayon: 18px;
+  --pro-espace-section: clamp(80px, 10vw, 130px);
+
+  --page-fond: var(--pro-fond);
+  --entete-teinte: 6, 11, 22;
+  --entete-accent: var(--pro-bleu-clair);
+  background: var(--pro-fond);
+  color: var(--pro-texte);
+}
+
+body[data-theme="professionnel"] ::selection{ background: var(--pro-bleu); color: #fff; }
+
+/* ============================================
+   FOND ANIMÉ (particules de Dev, conservées)
+   ============================================ */
+.pro-fond{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: var(--pro-fond);
+  pointer-events: none;
+}
+.pro-particule{ position: absolute; border-radius: 50%; opacity: .85; }
+.pro-p1{ width: 3px; height: 3px; top: 12%; left: 8%;  background: var(--pro-bleu-clair); box-shadow: 0 0 10px 2px var(--pro-bleu-clair); animation: proDeriveA 26s linear infinite; }
+.pro-p2{ width: 2px; height: 2px; top: 68%; left: 14%; background: var(--pro-bleu-moyen); box-shadow: 0 0 8px 1px var(--pro-bleu-moyen); animation: proDeriveB 32s linear infinite; }
+.pro-p3{ width: 4px; height: 4px; top: 30%; left: 82%; background: var(--pro-bleu-clair); box-shadow: 0 0 12px 2px var(--pro-bleu-clair); animation: proDeriveC 38s linear infinite; }
+.pro-p4{ width: 2px; height: 2px; top: 78%; left: 70%; background: var(--pro-bleu-moyen); box-shadow: 0 0 8px 1px var(--pro-bleu-moyen); animation: proDeriveA 30s linear infinite reverse; }
+.pro-p5{ width: 2px; height: 2px; top: 46%; left: 46%; background: var(--pro-bleu-clair); box-shadow: 0 0 8px 1px var(--pro-bleu-clair); animation: proDeriveB 22s linear infinite; }
+.pro-p6{ width: 3px; height: 3px; top: 8%;  left: 60%; background: var(--pro-bleu-moyen); box-shadow: 0 0 10px 2px var(--pro-bleu-moyen); animation: proDeriveC 34s linear infinite reverse; }
+.pro-p7{ width: 3px; height: 3px; top: 88%; left: 30%; background: var(--pro-bleu-clair); box-shadow: 0 0 10px 2px var(--pro-bleu-clair); animation: proDeriveA 40s linear infinite; }
+.pro-p8{ width: 2px; height: 2px; top: 55%; left: 92%; background: var(--pro-bleu-moyen); box-shadow: 0 0 8px 1px var(--pro-bleu-moyen); animation: proDeriveB 28s linear infinite reverse; }
+.pro-p9{ width: 2px; height: 2px; top: 22%; left: 34%; background: var(--pro-bleu-clair); box-shadow: 0 0 8px 1px var(--pro-bleu-clair); animation: proDeriveC 44s linear infinite; }
+.pro-p10{ width: 3px; height: 3px; top: 92%; left: 86%; background: var(--pro-bleu-moyen); box-shadow: 0 0 10px 2px var(--pro-bleu-moyen); animation: proDeriveA 36s linear infinite reverse; }
+
+@keyframes proDeriveA{
+  0%, 100%{ transform: translate(0,0); }
+  25%{ transform: translate(60px, -40px); }
+  50%{ transform: translate(120px, 20px); }
+  75%{ transform: translate(60px, 60px); }
+}
+@keyframes proDeriveB{
+  0%, 100%{ transform: translate(0,0); }
+  33%{ transform: translate(-80px, 50px); }
+  66%{ transform: translate(-30px, -60px); }
+}
+@keyframes proDeriveC{
+  0%, 100%{ transform: translate(0,0); }
+  50%{ transform: translate(-100px, 80px); }
 }
 
 /* ============================================
-   SECTION ACCUEIL (Hero)
+   STRUCTURE GÉNÉRALE
    ============================================ */
-.section-accueil{
+.pro-conteneur{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.pro-section{
+  position: relative;
+  padding: var(--pro-espace-section) 28px;
+  scroll-margin-top: calc(var(--hauteur-entete) - 20px);
+}
+.pro-apropos, .pro-projets{ background: rgba(10,18,34,0.94); }
+.pro-competences, .pro-contact{ background: rgba(6,11,22,0.9); }
+
+.pro-etiquette{
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 0 0 48px;
+  font-family: var(--police-titre);
+  font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--pro-blanc);
+}
+.pro-etiquette::after{
+  content: "";
+  flex: 1;
+  max-width: 260px;
+  height: 1px;
+  background: var(--pro-bordure-forte);
+  align-self: center;
+}
+.pro-num{
+  font-family: var(--police-code);
+  font-size: 0.55em;
+  font-weight: 500;
+  color: var(--pro-bleu-clair);
+}
+.pro-centre{ text-align: center; margin: 48px 0 0; }
+
+/* Apparition au défilement */
+.pro-revele{
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .7s var(--transition), transform .7s var(--transition);
+  transition-delay: var(--delai, 0ms);
+}
+.pro-revele.visible{ opacity: 1; transform: none; }
+
+/* ============================================
+   ACCUEIL (Hero)
+   ============================================ */
+.pro-accueil{
+  position: relative;
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: calc(var(--hauteur-entete) + 40px) 28px 80px;
-  background: var(--fond-transparent);
-  position: relative;
+  padding: calc(var(--hauteur-entete) + 40px) 28px 90px;
   overflow: hidden;
 }
-.accueil-conteneur{
-  max-width: 1240px;
+.pro-accueil::before{
+  /* grille technique discrète (motif SVG, sans dégradé) */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M56 0H0V56' fill='none' stroke='%237FC1FF' stroke-opacity='.06'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.pro-accueil-conteneur{
+  position: relative;
+  max-width: 1200px;
   margin: 0 auto;
   width: 100%;
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.15fr 0.85fr;
   align-items: center;
-  gap: 40px;
+  gap: 48px;
 }
-.accueil-salutation{
-  font-family: var(--police-code);
-  color: var(--accent-clair);
-  font-size: 0.95rem;
-  margin: 0 0 10px;
-}
-.accueil-titre{
-  font-family: var(--police-titre);
-  font-size: clamp(2.2rem, 4vw, 3.4rem);
-  line-height: 1.15;
-  margin: 0 0 14px;
-  color: var(--entete-texte-fort);
-}
-.accueil-nom{ color: var(--accent-clair); }
-.accueil-role{
-  font-size: 1.2rem;
-  color: var(--entete-texte);
-  margin: 0 0 8px;
-}
-.role-accent{ color: var(--accent-clair); font-weight: 600; }
-.accueil-langage{
-  font-size: 0.95rem;
-  color: var(--entete-texte);
-  margin: 0 0 28px;
-}
-.accueil-langage i{ color: var(--accent-clair); margin-right: 6px; }
-.accueil-actions{ display: flex; gap: 16px; flex-wrap: wrap; }
 
-.accueil-visuel{ display: flex; justify-content: center; }
-.carte-photo{
+.pro-salutation{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--police-code);
+  color: var(--pro-bleu-clair);
+  font-size: 0.95rem;
+  margin: 0 0 18px;
+}
+.pro-trait{ width: 34px; height: 2px; background: var(--pro-bleu-clair); }
+
+.pro-titre{
+  font-family: var(--police-titre);
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin: 0 0 20px;
+  color: var(--pro-blanc);
+}
+.pro-jesuis{
+  display: block;
+  font-size: 0.42em;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--pro-texte-doux);
+  margin-bottom: 8px;
+}
+.pro-nom{ color: var(--pro-blanc); }
+
+.pro-role{
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 500;
+  color: var(--pro-texte);
+  margin: 0 0 14px;
+}
+.role-accent{
+  color: var(--pro-bleu-clair);
+  font-weight: 700;
   position: relative;
-  width: min(340px, 80vw);
+}
+.pro-accroche{
+  max-width: 520px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--pro-texte-doux);
+  margin: 0 0 18px;
+}
+.pro-langage{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--pro-texte);
+  margin: 0 0 32px;
+  padding: 7px 14px;
+  border: 1px solid var(--pro-bordure-forte);
+  border-radius: 999px;
+  background: var(--pro-carte);
+}
+.pro-langage i{ color: var(--pro-bleu-clair); }
+.pro-langage strong{ color: var(--pro-blanc); font-family: var(--police-code); }
+
+.pro-actions{ display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.pro-bouton-icone{
+  width: 48px; height: 48px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 12px;
+  border: 1px solid var(--pro-bordure-forte);
+  background: var(--pro-carte);
+  color: var(--pro-blanc);
+  font-size: 1.25rem;
+  transition: transform .25s var(--transition), border-color .25s var(--transition);
+}
+.pro-bouton-icone:hover{ transform: translateY(-3px); border-color: var(--pro-bleu-clair); }
+.pro-actions .bouton-principal i{ transition: transform .25s var(--transition); }
+.pro-actions .bouton-principal:hover i{ transform: translateX(4px); }
+
+/* Entrée en cascade du hero */
+.pro-entree{
+  opacity: 0;
+  transform: translateY(18px);
+  animation: proEntree .8s var(--transition) forwards;
+}
+.pro-accueil-texte .pro-entree:nth-child(1){ animation-delay: .05s; }
+.pro-accueil-texte .pro-entree:nth-child(2){ animation-delay: .15s; }
+.pro-accueil-texte .pro-entree:nth-child(3){ animation-delay: .25s; }
+.pro-accueil-texte .pro-entree:nth-child(4){ animation-delay: .35s; }
+.pro-accueil-texte .pro-entree:nth-child(5){ animation-delay: .45s; }
+.pro-accueil-texte .pro-entree:nth-child(6){ animation-delay: .55s; }
+.pro-accueil-visuel.pro-entree{ animation-delay: .3s; }
+@keyframes proEntree{ to{ opacity: 1; transform: none; } }
+
+/* ---------- Photo ---------- */
+.pro-accueil-visuel{ display: flex; justify-content: center; }
+.pro-carte-photo{
+  position: relative;
+  width: min(360px, 74vw);
   aspect-ratio: 1;
-  border-radius: 50%;
-  background: var(--carte-fond);
-  border: 2px solid var(--carte-bordure);
+  will-change: transform;
 }
-.photo-profil{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-.badge-flottant{
+.pro-carte-photo picture{
   position: absolute;
+  inset: 14px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--pro-fond);
+  background: var(--pro-carte);
+  box-shadow: 0 30px 70px -30px rgba(0,0,0,0.8);
+}
+.pro-photo{ width: 100%; height: 100%; object-fit: cover; display: block; }
+.pro-anneau{
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--pro-bleu-moyen);
+}
+.pro-orbite{
+  position: absolute;
+  inset: -16px;
+  border-radius: 50%;
+  border: 1px dashed var(--pro-bordure-forte);
+  animation: tourner 28s linear infinite;
+}
+.pro-orbite span{
+  position: absolute;
+  top: 50%; left: -6px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--pro-bleu-clair);
+  box-shadow: 0 0 16px 3px rgba(127,193,255,0.7);
+}
+
+.pro-badge{
+  position: absolute;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background: var(--carte-fond);
+  background: rgba(15,26,46,0.88);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--carte-bordure);
+  border: 1px solid var(--pro-bordure-forte);
   border-radius: 14px;
-  padding: 10px 16px;
-  box-shadow: 0 14px 30px -12px rgba(0,0,0,0.55);
+  padding: 12px 18px;
+  box-shadow: 0 18px 36px -14px rgba(0,0,0,0.7);
   line-height: 1.1;
+  animation: proFlotter 5s ease-in-out infinite;
 }
-.badge-chiffre{
-  font-family: var(--police-titre);
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--carte-accent);
-}
-.badge-libelle{
-  font-size: 0.7rem;
-  color: var(--carte-texte-doux);
-  white-space: nowrap;
-}
-.badge-experience{ top: 6%; right: -6%; }
-.badge-projets{ bottom: 8%; left: -10%; }
-
-@media (max-width: 880px){
-  .accueil-conteneur{ grid-template-columns: 1fr; text-align: center; }
-  .accueil-actions{ justify-content: center; }
-  .accueil-visuel{ margin-top: 40px; }
-  .badge-experience{ right: 2%; }
-  .badge-projets{ left: 2%; }
-}
-
-.separateur-vague{
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  line-height: 0;
-}
-.separateur-vague svg{ width: 100%; height: 60px; display: block; }
-.separateur-vague path{ fill: rgb(14,20,34); }
-
-/* ============================================
-   SECTION À PROPOS
-   ============================================ */
-.section-apropos{
-  padding: 100px 28px;
-  background: var(--fond-alt-transparent);
-}
-.etiquette-section{
-  max-width: 1240px;
-  margin: 0 auto 30px;
+.pro-badge-chiffre{
   font-family: var(--police-titre);
   font-size: 1.6rem;
   font-weight: 700;
-  color: var(--entete-texte-fort);
+  color: var(--pro-bleu-clair);
+}
+.pro-badge-libelle{
+  font-size: 0.72rem;
+  color: var(--pro-texte);
+  white-space: nowrap;
+  margin-top: 2px;
+}
+.pro-badge-experience{ top: 4%; right: -8%; }
+.pro-badge-projets{ bottom: 6%; left: -12%; animation-delay: -2.5s; }
+
+@keyframes proFlotter{
+  0%, 100%{ transform: translateY(0); }
+  50%{ transform: translateY(-10px); }
 }
 
-.apropos-conteneur{
-  max-width: 1240px;
-  margin: 0 auto;
+/* ---------- Indicateur de défilement ---------- */
+.pro-defiler{
+  position: absolute;
+  bottom: 28px; left: 50%;
+  transform: translateX(-50%);
+  padding: 8px;
 }
-.apropos-conteneur::after{ content:""; display:block; clear:both; }
-
-.apropos-conteneur p{
-  font-size: 1.15rem;
-  line-height: 1.8;
-  color: var(--entete-texte);
-  margin: 0 0 22px;
-}
-
-/* ---------- Carte flottante (verre dépoli) ---------- */
-.carte-identite{
-  float: right;
-  width: 260px;
-  margin: 4px 0 34px 44px;
-  padding: 30px 24px;
-  text-align: center;
+.pro-souris{
+  display: block;
+  width: 24px; height: 38px;
+  border: 2px solid var(--pro-texte-doux);
+  border-radius: 14px;
   position: relative;
+}
+.pro-souris span{
+  position: absolute;
+  top: 7px; left: 50%;
+  width: 4px; height: 8px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: var(--pro-bleu-clair);
+  animation: proMolette 1.8s var(--transition) infinite;
+}
+@keyframes proMolette{
+  0%{ opacity: 0; transform: translateY(0); }
+  30%{ opacity: 1; }
+  100%{ opacity: 0; transform: translateY(12px); }
+}
+
+@media (max-width: 900px){
+  .pro-accueil-conteneur{ grid-template-columns: 1fr; text-align: center; gap: 56px; }
+  .pro-accueil-visuel{ order: -1; }
+  .pro-salutation, .pro-actions{ justify-content: center; }
+  .pro-accroche{ margin-left: auto; margin-right: auto; }
+  .pro-badge-experience{ right: -4%; }
+  .pro-badge-projets{ left: -4%; }
+  .pro-carte-photo{ width: min(280px, 66vw); }
+  .pro-defiler{ display: none; }
+}
+@media (max-width: 400px){
+  .pro-badge{ padding: 8px 12px; }
+  .pro-badge-chiffre{ font-size: 1.25rem; }
+  .pro-badge-libelle{ font-size: .65rem; }
+}
+
+/* ============================================
+   À PROPOS
+   ============================================ */
+.pro-apropos-grille{
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 56px;
+  align-items: start;
+}
+.pro-apropos-texte p{
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--pro-texte);
+  margin: 0 0 22px;
+  max-width: 68ch;
+}
+.pro-puces{
+  list-style: none;
+  padding: 0;
+  margin: 30px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pro-puces li{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--pro-blanc);
+  font-weight: 500;
+}
+.pro-puces i{
+  width: 36px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 10px;
+  background: var(--pro-carte);
+  border: 1px solid var(--pro-bordure-forte);
+  color: var(--pro-bleu-clair);
+  flex-shrink: 0;
+}
+
+/* Carte d'identité de Dev, conservée et épurée */
+.pro-carte-identite{
+  position: sticky;
+  top: calc(var(--hauteur-entete) + 30px);
+  padding: 34px 26px 26px;
+  text-align: center;
   overflow: hidden;
   border-radius: 22px;
-  background: var(--carte-fond);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid var(--carte-bordure);
-  box-shadow: 0 30px 60px -20px rgba(0,0,0,0.55), 0 10px 26px -12px rgba(0,0,0,0.4);
-  animation: flotter 5s ease-in-out infinite;
+  background: var(--pro-carte);
+  border: 1px solid var(--pro-bordure-forte);
+  box-shadow: 0 30px 60px -24px rgba(0,0,0,0.7);
 }
-
-/* liseré d'accent en haut de la carte */
-.carte-identite::after{
+.pro-carte-identite::before{
   content: "";
   position: absolute;
   top: 0; left: 50%;
   transform: translateX(-50%);
-  width: 46px;
-  height: 4px;
+  width: 56px; height: 4px;
   border-radius: 0 0 4px 4px;
-  background: linear-gradient(90deg, var(--accent-1), var(--accent-clair));
+  background: var(--pro-bleu-clair);
 }
-
-.identite-nom{
+/* reflet en bande pleine semi-transparente */
+.pro-carte-identite::after{
+  content: "";
+  position: absolute;
+  top: 0; left: -160%;
+  width: 40%; height: 100%;
+  background: rgba(255,255,255,0.06);
+  transform: skewX(-20deg);
+  animation: proReflet 8s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes proReflet{
+  0%, 8%{ left: -160%; }
+  35%, 100%{ left: 160%; }
+}
+.pro-identite-nom{
   font-family: var(--police-titre);
-  font-size: 1.35rem;
+  font-size: 1.45rem;
   font-weight: 700;
-  color: var(--carte-texte);
-  margin: 6px 0 0;
-  line-height: 1.25;
+  color: var(--pro-blanc);
+  margin: 0;
+  line-height: 1.2;
 }
-.identite-separateur{
-  width: 36px;
-  height: 3px;
-  background: var(--accent-clair);
+.pro-identite-separateur{
+  display: block;
+  width: 36px; height: 3px;
+  background: var(--pro-bleu-clair);
   border-radius: 3px;
   margin: 14px auto;
 }
-.identite-role{
+.pro-identite-role{
   font-family: var(--police-code);
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--accent-clair);
+  color: var(--pro-bleu-clair);
   font-weight: 700;
-  margin: 0;
+  margin: 0 0 24px;
   line-height: 1.5;
 }
-
-/* le reflet qui balaie la carte toutes les 8s */
-.carte-identite::before{
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -160%;
-  width: 55%;
-  height: 100%;
-  background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.18) 45%, rgba(255,255,255,0.18) 55%, transparent 100%);
-  transform: skewX(-20deg);
-  animation: reflet 8s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes flotter{
-  0%, 100%{ transform: translateY(0); }
-  50%{ transform: translateY(-10px); }
-}
-@keyframes reflet{
-  0%, 8%{ left: -160%; }
-  35%{ left: 160%; }
-  100%{ left: 160%; }
-}
-
-@media (max-width: 640px){
-  .carte-identite{ float: none; width: 100%; margin: 0 0 30px; }
-}
-
-/* ============================================
-   SECTION COMPÉTENCES
-   ============================================ */
-.section-competences{
-  padding: 100px 28px 120px;
-  background: var(--fond-transparent);
-}
-.section-competences .etiquette-section{
-  max-width: 1240px;
-  margin: 0 auto 40px;
-}
-
-.grille-competences{
-  max-width: 1240px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 26px;
-}
-
-.carte-competence{
-  position: relative;
-  overflow: hidden;
-  background: var(--carte-fond);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--carte-bordure);
-  border-radius: 18px;
-  padding: 26px 20px;
-  text-align: center;
-  box-shadow: 0 20px 40px -22px rgba(0,0,0,0.55);
-  animation: flotterDoux 6s ease-in-out infinite;
-  animation-delay: var(--delai-flotte, 0s);
-  transition: box-shadow .3s var(--transition), background .3s var(--transition);
-}
-.carte-competence:hover{
-  background: var(--carte-fond-hover);
-  box-shadow: 0 26px 50px -20px rgba(0,0,0,0.65);
-}
-
-/* reflet au survol */
-.carte-competence::before{
-  content: "";
-  position: absolute;
-  top: 0; left: -160%;
-  width: 55%; height: 100%;
-  background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.15) 45%, rgba(255,255,255,0.15) 55%, transparent 100%);
-  transform: skewX(-20deg);
-  transition: left .8s var(--transition);
-  pointer-events: none;
-}
-.carte-competence:hover::before{ left: 160%; }
-
-.competence-icone{
-  font-size: 1.9rem;
-  color: var(--carte-accent);
-  margin-bottom: 12px;
-}
-.competence-nom{
-  font-family: var(--police-titre);
-  font-size: 1.05rem;
-  color: var(--carte-texte);
-  margin: 0 0 12px;
-}
-.competence-etiquette{
-  font-family: var(--police-code);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--carte-texte-doux);
-  margin: 0 0 8px;
-}
-
-.niveau-liste{
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.niveau-option{
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  color: rgba(183,196,220,0.45);
-  transition: color .2s var(--transition);
-}
-.puce{
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--carte-accent);
-  opacity: 0;
-  transform: scale(0.4);
-  transition: opacity .2s var(--transition), transform .2s var(--transition);
-}
-
-/* le point (et le texte) s'allume sur le niveau atteint de chaque carte */
-.carte-competence[data-niveau="debutant"] .niveau-option[data-valeur="debutant"],
-.carte-competence[data-niveau="intermediaire"] .niveau-option[data-valeur="intermediaire"],
-.carte-competence[data-niveau="expert"] .niveau-option[data-valeur="expert"]{
-  color: var(--carte-accent);
-  font-weight: 600;
-}
-.carte-competence[data-niveau="debutant"] .niveau-option[data-valeur="debutant"] .puce,
-.carte-competence[data-niveau="intermediaire"] .niveau-option[data-valeur="intermediaire"] .puce,
-.carte-competence[data-niveau="expert"] .niveau-option[data-valeur="expert"] .puce{
-  opacity: 1;
-  transform: scale(1);
-}
-
-@keyframes flotterDoux{
-  0%, 100%{ transform: translateY(0); }
-  50%{ transform: translateY(-6px); }
-}
-
-@media (max-width: 1024px){
-  .grille-competences{ grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 480px){
-  .grille-competences{ grid-template-columns: 1fr; }
-}
-
-.competence-logo{
-  width: 1.9rem;
-  height: 1.9rem;
-  object-fit: contain;
-}
-
-/* ============================================
-   SECTION PROJETS
-   ============================================ */
-.section-projets{
-  padding: 100px 28px 120px;
-  background: var(--fond-alt-transparent);
-}
-.section-projets .etiquette-section{
-  max-width: 1240px;
-  margin: 0 auto 40px;
-}
-
-.grille-projets{
-  max-width: 1240px;
-  margin: 0 auto;
+.pro-chiffres{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 6px;
+  margin: 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--pro-bordure);
 }
-
-.carte-projet{
-  position: relative;
-  overflow: hidden;
-  background: var(--carte-fond);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-radius: 18px;
-  border: 1px solid var(--carte-bordure);
-  box-shadow: 0 20px 45px -24px rgba(0,0,0,0.55);
-  transition: transform .35s var(--transition), box-shadow .35s var(--transition), background .35s var(--transition);
-}
-.carte-projet:hover{
-  transform: translateY(-8px);
-  background: var(--carte-fond-hover);
-  box-shadow: 0 30px 55px -20px rgba(0,0,0,0.65);
-}
-
-.projet-image{
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16/10;
-  overflow: hidden;
-  background: rgba(255,255,255,0.05);
-}
-.projet-image img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .5s var(--transition);
-}
-.carte-projet:hover .projet-image img{ transform: scale(1.06); }
-
-/* reflet au survol, cohérent avec le reste du site */
-.projet-image::after{
-  content: "";
-  position: absolute;
-  top: 0; left: -160%;
-  width: 55%; height: 100%;
-  background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.25) 45%, rgba(255,255,255,0.25) 55%, transparent 100%);
-  transform: skewX(-20deg);
-  transition: left .8s var(--transition);
-}
-.carte-projet:hover .projet-image::after{ left: 160%; }
-
-.projet-contenu{ padding: 22px 22px 24px; }
-.projet-nom{
+.pro-chiffres div{ display: flex; flex-direction: column-reverse; gap: 4px; }
+.pro-chiffres dd{
+  margin: 0;
   font-family: var(--police-titre);
-  font-size: 1.15rem;
-  color: var(--carte-texte);
-  margin: 0 0 10px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--pro-blanc);
 }
-.projet-description{
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: var(--carte-texte-doux);
-  margin: 0 0 16px;
+.pro-chiffres dt{ font-size: 0.68rem; color: var(--pro-texte-doux); line-height: 1.3; }
+
+@media (max-width: 900px){
+  .pro-apropos-grille{ grid-template-columns: 1fr; gap: 36px; }
+  .pro-carte-identite{ position: relative; top: 0; max-width: 420px; }
 }
 
-.projet-technos{
+/* ============================================
+   COMPÉTENCES
+   ============================================ */
+.pro-grille-competences{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.pro-carte-competence{
+  position: relative;
+  background: var(--pro-carte);
+  border: 1px solid var(--pro-bordure);
+  border-radius: var(--pro-rayon);
+  padding: 22px 20px 20px;
+  transition: transform .35s var(--transition), border-color .35s var(--transition), background .35s var(--transition), opacity .7s var(--transition);
+}
+.pro-carte-competence:hover{
+  transform: translateY(-6px);
+  border-color: var(--pro-bleu-moyen);
+  background: var(--pro-carte-survol);
+}
+.pro-competence-haut{
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
   gap: 8px;
   margin-bottom: 18px;
 }
-.etiquette-tech{
-  font-family: var(--police-code);
-  font-size: 0.72rem;
-  color: var(--carte-accent);
-  background: rgba(127,193,255,0.12);
-  border-radius: 6px;
-  padding: 4px 10px;
+.pro-competence-icone{
+  width: 48px; height: 48px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 12px;
+  background: rgba(127,193,255,0.1);
+  color: var(--pro-bleu-clair);
+  font-size: 1.45rem;
+  transition: transform .35s var(--transition), background .35s var(--transition), color .35s var(--transition);
 }
-
-.projet-liens{ display: flex; gap: 14px; }
-.lien-projet{
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 0.88rem;
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--carte-texte);
-  transition: color .2s var(--transition);
-}
-.lien-projet:hover{ color: var(--carte-accent); }
-.lien-projet i{ font-size: 0.85rem; }
-
-.lien-telechargement{ color: var(--carte-texte); }
-.lien-telechargement:hover{ color: var(--carte-accent); }
-
-/* ---------- Badge statut projet ---------- */
-.badge-statut{
-  position: absolute;
-  top: 12px;
-  left: 12px;
+.pro-carte-competence:hover .pro-competence-icone{ transform: rotate(-8deg) scale(1.08); background: var(--pro-bleu); color: #fff; }
+.pro-competence-categorie{
   font-family: var(--police-code);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
+  font-size: 0.66rem;
   text-transform: uppercase;
-  padding: 5px 10px;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  letter-spacing: 0.05em;
+  color: var(--pro-texte-doux);
+  text-align: right;
 }
-.badge-termine{
-  background: rgba(74,222,128,0.18);
-  color: #4ade80;
-  border: 1px solid rgba(74,222,128,0.4);
+.pro-competence-nom{
+  font-family: var(--police-titre);
+  font-size: 1.1rem;
+  color: var(--pro-blanc);
+  margin: 0 0 14px;
 }
-.badge-encours{
-  background: rgba(251,191,36,0.18);
-  color: #fbbf24;
-  border: 1px solid rgba(251,191,36,0.4);
+.pro-jauge{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin-bottom: 10px;
 }
+.pro-jauge span{
+  height: 6px;
+  border-radius: 3px;
+  background: var(--pro-bordure);
+  transform-origin: left;
+}
+.pro-jauge span.rempli{ background: var(--pro-bleu-clair); }
+.pro-revele .pro-jauge span.rempli{ transform: scaleX(0); transition: transform .6s var(--transition); }
+.pro-revele.visible .pro-jauge span.rempli{ transform: scaleX(1); }
+.pro-revele.visible .pro-jauge span.rempli:nth-child(2){ transition-delay: .15s; }
+.pro-revele.visible .pro-jauge span.rempli:nth-child(3){ transition-delay: .3s; }
 
-@media (max-width: 1024px){
-  .grille-projets{ grid-template-columns: repeat(2, 1fr); }
+.pro-niveaux{
+  list-style: none;
+  margin: 0; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  font-size: 0.68rem;
+  color: #56688A;
 }
-@media (max-width: 640px){
-  .grille-projets{ grid-template-columns: 1fr; }
+.pro-niveaux li.atteint{ color: var(--pro-bleu-clair); font-weight: 700; }
+
+@media (max-width: 1024px){ .pro-grille-competences{ grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 760px){ .pro-grille-competences{ grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+@media (max-width: 400px){
+  .pro-carte-competence{ padding: 18px 14px 16px; }
+  .pro-competence-categorie{ display: none; }
 }
 
 /* ============================================
-   SECTION CONTACT
+   PROJETS
    ============================================ */
-.section-contact{
-  padding: 100px 28px 120px;
-  background: var(--fond-transparent);
+.pro-entete-section{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-bottom: 40px;
 }
-.section-contact .etiquette-section{
-  max-width: 1240px;
-  margin: 0 auto 40px;
+.pro-entete-section .pro-etiquette{ margin: 0; }
+.pro-filtres{ display: flex; flex-wrap: wrap; gap: 8px; }
+.pro-filtre{
+  min-height: 38px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--pro-bordure-forte);
+  background: var(--pro-carte);
+  color: var(--pro-texte);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .25s var(--transition), color .25s var(--transition), border-color .25s var(--transition);
 }
-.contact-conteneur{
-  max-width: 1240px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 50px;
-  align-items: start;
-}
+.pro-filtre:hover{ border-color: var(--pro-bleu-clair); color: #fff; }
+.pro-filtre.actif{ background: var(--pro-bleu-clair); border-color: var(--pro-bleu-clair); color: #06101F; font-weight: 700; }
 
-.contact-disponibilite{
+.pro-grille-projets{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+.pro-carte-projet{
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--pro-carte);
+  border-radius: var(--pro-rayon);
+  border: 1px solid var(--pro-bordure);
+  transition: transform .4s var(--transition), border-color .4s var(--transition), box-shadow .4s var(--transition), opacity .7s var(--transition);
+}
+.pro-carte-projet:hover{
+  transform: translateY(-8px);
+  border-color: var(--pro-bleu-moyen);
+  box-shadow: 0 30px 55px -26px rgba(0,0,0,0.85);
+}
+.pro-projet-image{
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--pro-fond-alt);
+  border-bottom: 1px solid var(--pro-bordure);
+}
+.pro-projet-image img{
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .6s var(--transition);
+}
+.pro-carte-projet:hover .pro-projet-image img{ transform: scale(1.06); }
+
+/* Visuel de remplacement tant que la capture manque */
+.pro-visuel-reserve{
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 1.02rem;
-  color: var(--carte-texte);
+  justify-content: center;
+  background-color: #0D1B33;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Ccircle cx='8' cy='8' r='1' fill='%237FC1FF' fill-opacity='.18'/%3E%3C/svg%3E");
+  transition: transform .6s var(--transition);
+}
+.pro-visuel-jeu{ background-color: #112042; }
+.pro-visuel-ia{ background-color: #0E2440; }
+.pro-visuel-web{ background-color: #0C1E38; }
+.pro-carte-projet:hover .pro-visuel-reserve{ transform: scale(1.05); }
+.pro-visuel-initiales{
+  font-family: var(--police-titre);
+  font-size: 3.4rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--pro-blanc);
+}
+.pro-visuel-icone{
+  position: absolute;
+  right: 16px; bottom: 14px;
+  font-size: 1.2rem;
+  color: var(--pro-bleu-clair);
+  opacity: .8;
+}
+
+.pro-badge-statut{
+  position: absolute;
+  top: 12px; left: 12px;
+  z-index: 1;
+  font-family: var(--police-code);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(6,11,22,0.85);
+}
+.pro-statut-termine{ color: var(--pro-vert); border: 1px solid rgba(74,222,128,0.5); }
+.pro-statut-encours{ color: var(--pro-ambre); border: 1px solid rgba(251,191,36,0.5); }
+
+.pro-projet-contenu{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 22px 22px 22px;
+}
+.pro-projet-categorie{
+  margin: 0 0 8px;
+  font-family: var(--police-code);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--pro-bleu-clair);
+}
+.pro-projet-categorie i{ margin-right: 4px; }
+.pro-projet-nom{
+  font-family: var(--police-titre);
+  font-size: 1.2rem;
+  color: var(--pro-blanc);
+  margin: 0 0 10px;
+}
+.pro-projet-description{
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--pro-texte-doux);
+  margin: 0 0 18px;
+}
+.pro-projet-technos{
+  list-style: none;
+  padding: 0;
+  margin: auto 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.pro-projet-technos li{
+  font-family: var(--police-code);
+  font-size: 0.7rem;
+  color: var(--pro-bleu-clair);
+  background: rgba(127,193,255,0.1);
+  border-radius: 6px;
+  padding: 4px 9px;
+}
+.pro-projet-liens{
+  display: flex;
+  gap: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--pro-bordure);
+}
+.pro-lien-projet{
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 32px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--pro-blanc);
+  transition: color .2s var(--transition);
+}
+.pro-lien-projet:hover{ color: var(--pro-bleu-clair); }
+.pro-lien-inactif{ color: var(--pro-texte-doux); font-weight: 500; }
+.pro-lien-inactif:hover{ color: var(--pro-texte-doux); }
+
+@media (max-width: 1024px){ .pro-grille-projets{ grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 680px){ .pro-grille-projets{ grid-template-columns: 1fr; } }
+
+/* ============================================
+   CONTACT
+   ============================================ */
+.pro-contact-grille{
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 56px;
+  align-items: start;
+}
+.pro-contact-sous-titre{
+  font-family: var(--police-titre);
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--pro-blanc);
+  margin: 0 0 26px;
+}
+.pro-disponibilite{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.98rem;
+  color: var(--pro-blanc);
   margin: 0 0 30px;
   padding: 14px 18px;
-  background: var(--carte-fond);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--pro-carte);
   border-radius: 12px;
-  border: 1px solid var(--carte-bordure);
+  border: 1px solid var(--pro-bordure-forte);
 }
-.point-dispo{
+.pro-point-dispo{
   width: 10px; height: 10px;
   border-radius: 50%;
-  background: #2ecc71;
+  background: #2ECC71;
   flex-shrink: 0;
-  animation: pulseDispo 2s infinite;
+  animation: proPulseDispo 2s infinite;
 }
-@keyframes pulseDispo{
+@keyframes proPulseDispo{
   0%{ box-shadow: 0 0 0 0 rgba(46,204,113,0.5); }
   70%{ box-shadow: 0 0 0 10px rgba(46,204,113,0); }
   100%{ box-shadow: 0 0 0 0 rgba(46,204,113,0); }
 }
-
-.contact-infos{ list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
-.contact-infos li{ display: flex; align-items: center; gap: 12px; font-size: 1rem; color: var(--entete-texte); }
-.contact-infos i{ color: var(--accent-clair); width: 20px; text-align: center; }
-.contact-infos a{ color: inherit; text-decoration: none; transition: color .2s var(--transition); }
-.contact-infos a:hover{ color: var(--accent-clair); }
-
-.formulaire-contact{
-  background: var(--carte-fond);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: 18px;
-  padding: 32px;
-  border: 1px solid var(--carte-bordure);
-  box-shadow: 0 25px 55px -28px rgba(0,0,0,0.55);
+.pro-contact-infos{ list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.pro-contact-infos a{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  border-radius: 14px;
+  color: var(--pro-blanc);
+  text-decoration: none;
+  border: 1px solid transparent;
+  word-break: break-word;
+  transition: background .25s var(--transition), border-color .25s var(--transition);
 }
-.formulaire-titre{
+.pro-contact-infos a:hover{ background: var(--pro-carte); border-color: var(--pro-bordure-forte); }
+.pro-contact-infos small{
+  display: block;
+  font-size: 0.72rem;
+  color: var(--pro-texte-doux);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: 2px;
+}
+.pro-contact-icone{
+  width: 46px; height: 46px;
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 12px;
+  background: var(--pro-bleu);
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.pro-formulaire{
+  background: var(--pro-carte);
+  border-radius: 20px;
+  padding: 34px;
+  border: 1px solid var(--pro-bordure-forte);
+  box-shadow: 0 30px 60px -30px rgba(0,0,0,0.75);
+}
+.pro-formulaire-titre{
   font-family: var(--police-titre);
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  color: var(--carte-texte);
-  margin: 0 0 22px;
+  color: var(--pro-blanc);
+  margin: 0 0 24px;
 }
-.champ-groupe{ margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
-.champ-groupe label{ font-size: 0.85rem; font-weight: 600; color: var(--carte-texte); }
-.champ-groupe input, .champ-groupe textarea{
+.pro-champ{ margin-bottom: 18px; display: flex; flex-direction: column; gap: 8px; }
+.pro-champ label{ font-size: 0.85rem; font-weight: 600; color: var(--pro-blanc); }
+.pro-champ input, .pro-champ textarea{
   font-family: var(--police-texte);
-  font-size: 0.95rem;
-  padding: 12px 14px;
+  font-size: 1rem;
+  padding: 13px 14px;
   border-radius: 10px;
-  border: 1px solid var(--carte-bordure);
-  background: rgba(0,0,0,0.2);
-  color: var(--carte-texte);
+  border: 1px solid var(--pro-bordure-forte);
+  background: var(--pro-fond);
+  color: var(--pro-blanc);
   resize: vertical;
   transition: border-color .2s var(--transition), box-shadow .2s var(--transition);
 }
-.champ-groupe input::placeholder, .champ-groupe textarea::placeholder{ color: rgba(183,196,220,0.45); }
-.champ-groupe input:focus, .champ-groupe textarea:focus{
+.pro-champ input::placeholder, .pro-champ textarea::placeholder{ color: #5E7092; }
+.pro-champ input:focus, .pro-champ textarea:focus{
   outline: none;
-  border-color: var(--accent-clair);
-  box-shadow: 0 0 0 3px rgba(127,193,255,0.18);
+  border-color: var(--pro-bleu-clair);
+  box-shadow: 0 0 0 3px rgba(127,193,255,0.2);
 }
-.statut-envoi{ margin-top: 14px; font-size: 0.9rem; min-height: 1.2em; }
-.statut-envoi.succes{ color: #4ade80; }
-.statut-envoi.erreur{ color: #f87171; }
+.pro-formulaire .bouton-principal{ width: 100%; margin-top: 6px; }
+.pro-statut{ margin: 14px 0 0; font-size: 0.9rem; min-height: 1.2em; }
+.pro-statut.succes{ color: var(--pro-vert); }
+.pro-statut.erreur{ color: #F87171; }
 
-@media (max-width: 880px){
-  .contact-conteneur{ grid-template-columns: 1fr; }
+@media (max-width: 900px){
+  .pro-contact-grille{ grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 480px){
+  .pro-formulaire{ padding: 24px 18px; }
+  .pro-section{ padding-left: 18px; padding-right: 18px; }
+  .pro-accueil{ padding-left: 18px; padding-right: 18px; }
 }
 
 /* ============================================
-   BOUTON CHANGER DE THÈME
+   ESSAYER UN AUTRE THÈME
    ============================================ */
-.section-changer-theme{
-  padding: 60px 28px 100px;
+.pro-changer-theme{
+  background: rgba(10,18,34,0.94);
   text-align: center;
-  background: var(--fond-alt-transparent);
+  padding-top: 90px;
+  padding-bottom: 100px;
 }
-.bouton-changer-theme{
+.pro-changer-titre{
+  font-family: var(--police-titre);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--pro-blanc);
+  margin: 0 0 10px;
+}
+.pro-changer-texte{ color: var(--pro-texte-doux); margin: 0 0 32px; }
+.pro-cartes-themes{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 340px));
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+.pro-carte-theme{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  text-align: left;
+  border-radius: 16px;
+  border: 1px solid var(--pro-bordure-forte);
+  background: var(--pro-carte);
+  color: var(--pro-blanc);
+  cursor: pointer;
+  transition: transform .3s var(--transition), border-color .3s var(--transition), background .3s var(--transition);
+}
+.pro-carte-theme:hover{ transform: translateY(-4px); border-color: var(--pro-bleu-clair); background: var(--pro-carte-survol); }
+.pro-carte-theme-icone{
+  width: 48px; height: 48px;
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 12px;
+  font-size: 1.3rem;
+}
+.pro-carte-theme-gaming .pro-carte-theme-icone{ background: #2B1B4D; color: #FFC857; }
+.pro-carte-theme-personnel .pro-carte-theme-icone{ background: #3A0F1E; color: #FF3D6E; }
+.pro-carte-theme-texte{ display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.pro-carte-theme-texte strong{ font-family: var(--police-titre); font-size: 1.05rem; }
+.pro-carte-theme-texte small{ color: var(--pro-texte-doux); font-size: 0.82rem; }
+.pro-carte-theme-fleche{ color: var(--pro-bleu-clair); transition: transform .3s var(--transition); }
+.pro-carte-theme:hover .pro-carte-theme-fleche{ transform: translateX(4px); }
+
+.pro-bouton-changer{
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 14px 28px;
-  border-radius: 12px;
-  border: 1px solid var(--carte-bordure);
-  background: var(--carte-fond);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: var(--carte-texte);
-  font-family: var(--police-texte);
-  font-size: 0.95rem;
+  min-height: 44px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background: none;
+  color: var(--pro-texte);
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 16px 34px -18px rgba(0,0,0,0.5);
-  transition: transform .25s var(--transition), box-shadow .25s var(--transition), background .25s var(--transition);
+  transition: color .25s var(--transition);
 }
-.bouton-changer-theme:hover{
-  transform: translateY(-3px);
-  background: var(--carte-fond-hover);
-  box-shadow: 0 22px 40px -16px rgba(0,0,0,0.6);
+.pro-bouton-changer:hover{ color: var(--pro-blanc); }
+.pro-bouton-changer i{ color: var(--pro-bleu-clair); transition: transform .4s var(--transition); }
+.pro-bouton-changer:hover i{ transform: rotate(180deg); }
+
+@media (max-width: 680px){
+  .pro-cartes-themes{ grid-template-columns: 1fr; }
 }
-.bouton-changer-theme i{
-  color: var(--carte-accent);
-  transition: transform .4s var(--transition);
-}
-.bouton-changer-theme:hover i{ transform: rotate(180deg); }
