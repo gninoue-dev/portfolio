@@ -168,7 +168,7 @@
       dernierHud = etat;
       $('#jeuFragments').innerHTML = FRAGMENTS.map(f => `
         <span class="jeu-fragment ${etat.fragments[f.cle] ? 'obtenu' : ''}" title="${t(`jeu.fragment-${f.cle}`)}">
-          <i class="${f.icone}" aria-hidden="true"></i><span class="visuellement-cache">${t(`jeu.fragment-${f.cle}`)} : ${etat.fragments[f.cle] ? '✓' : '—'}</span>
+          <i class="${f.icone}" aria-hidden="true"></i><span class="visuellement-cache">${t(`jeu.fragment-${f.cle}`)} : ${t(etat.fragments[f.cle] ? 'jeu.obtenu' : 'jeu.manquant')}</span>
         </span>`).join('') + `
         <span class="jeu-compteur" title="${t('jeu.orbes')}"><i class="fa-solid fa-circle-dot" aria-hidden="true"></i> ${etat.orbes}/${etat.totalOrbes}</span>
         <span class="jeu-compteur" title="${t('jeu.steles')}"><i class="fa-solid fa-monument" aria-hidden="true"></i> ${etat.steles}/${etat.totalSteles}</span>`;
@@ -361,7 +361,7 @@
       <li class="${obtenus.has(s.cle) ? 'obtenu' : ''}">
         <i class="${s.icone}" aria-hidden="true"></i>
         <span><strong>${t(`succes.${s.cle}`)}</strong><small>${t(`succes.${s.cle}-desc`)}</small></span>
-        <span class="visuellement-cache">${obtenus.has(s.cle) ? '✓' : '—'}</span>
+        <span class="visuellement-cache">${t(obtenus.has(s.cle) ? 'jeu.obtenu' : 'jeu.manquant')}</span>
       </li>`).join('')}</ul>`;
   }
 

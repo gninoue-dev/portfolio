@@ -14,6 +14,7 @@ body[data-theme="personnel"]{
   --perso-gris: #5B5750;
   --perso-rouge: #FF2D55;
   --perso-rouge-sombre: #C4123A;
+  --perso-rouge-bouton: #E0143F; /* contraste AA avec le texte blanc */
   --perso-neon: #E8FF3A;
   --perso-cyan: #2DF2FF;
   --perso-police-titre: 'Dela Gothic One', 'Zen Kaku Gothic New', system-ui, sans-serif;
@@ -41,7 +42,7 @@ body[data-theme="personnel"] .lien-nav{ font-weight: 700; }
 body[data-theme="personnel"] .entete-site{ border-bottom: 3px solid var(--perso-rouge); background: rgba(14,14,16,0.92); }
 body[data-theme="personnel"] .lueur-entete{ background: var(--perso-neon); }
 body[data-theme="personnel"] .bouton-principal{
-  background: var(--perso-rouge);
+  background: var(--perso-rouge-bouton);
   border-radius: 0;
   box-shadow: 4px 4px 0 var(--perso-neon);
   font-family: var(--perso-police-texte);
@@ -253,7 +254,7 @@ body[data-theme="personnel"] ::selection{ background: var(--perso-neon); color: 
 }
 .perso-bouton:hover{ transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--perso-encre); }
 .perso-bouton:active{ transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--perso-encre); }
-.perso-bouton-encre{ background: var(--perso-rouge); color: #fff; }
+.perso-bouton-encre{ background: var(--perso-rouge-bouton); color: #fff; }
 .perso-bouton-neon{ background: var(--perso-neon); color: var(--perso-encre); box-shadow: 5px 5px 0 var(--perso-rouge); }
 .perso-bouton-neon:hover{ box-shadow: 7px 7px 0 var(--perso-rouge); }
 .perso-bouton:disabled{ opacity: .7; cursor: progress; }
@@ -395,6 +396,7 @@ body[data-theme="personnel"] ::selection{ background: var(--perso-neon); color: 
   box-shadow: 5px 5px 0 var(--perso-encre);
   transform: rotate(-4deg);
 }
+.perso-papier .perso-etiquette-chapitre{ color: var(--perso-rouge-sombre); }
 .perso-nuit .perso-numero-chapitre{ border-color: #fff; box-shadow: 5px 5px 0 var(--perso-neon); }
 .perso-etiquette-chapitre{
   margin: 0 0 4px;

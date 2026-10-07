@@ -568,7 +568,7 @@ body[data-theme="professionnel"] ::selection{ background: var(--pro-bleu); color
   grid-template-columns: repeat(3, 1fr);
   gap: 5px;
   font-size: 0.68rem;
-  color: #56688A;
+  color: #8494B4;
 }
 .pro-niveaux li.atteint{ color: var(--pro-bleu-clair); font-weight: 700; }
 
