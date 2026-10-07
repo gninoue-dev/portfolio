@@ -229,9 +229,9 @@
     const liste = donnees.projets.filter(p => filtreProjets === 'tout' || p.categorie === filtreProjets);
     grille.innerHTML = liste.map((projet, index) => {
       const visuel = projet.image
-        ? `<img src="${projet.image}" alt="${projet.nom}" loading="lazy">`
-        : `<div class="pro-visuel-reserve pro-visuel-${projet.categorie}" role="img" aria-label="${projet.nom} — ${t('projets.capture-a-venir')}">
-             <span class="pro-visuel-initiales">${initialesProjet(projet.nom)}</span>
+        ? `<img src="${projet.image}" alt="${tr(projet.nom)}" loading="lazy">`
+        : `<div class="pro-visuel-reserve pro-visuel-${projet.categorie}" role="img" aria-label="${tr(projet.nom)} — ${t('projets.capture-a-venir')}">
+             <span class="pro-visuel-initiales">${initialesProjet(tr(projet.nom))}</span>
              <i class="${ICONES_CATEGORIES[projet.categorie]} pro-visuel-icone" aria-hidden="true"></i>
            </div>`;
       const lienCode = projet.lienCode
@@ -248,7 +248,7 @@
           </div>
           <div class="pro-projet-contenu">
             <p class="pro-projet-categorie"><i class="${ICONES_CATEGORIES[projet.categorie]}" aria-hidden="true"></i> ${t(`categorie.${projet.categorie}`)}</p>
-            <h3 class="pro-projet-nom">${projet.nom}</h3>
+            <h3 class="pro-projet-nom">${tr(projet.nom)}</h3>
             <p class="pro-projet-description">${tr(projet.description)}</p>
             <ul class="pro-projet-technos">${projet.technos.map(x => `<li>${x}</li>`).join('')}</ul>
             <div class="pro-projet-liens">${lienCode}${lienDemo}</div>

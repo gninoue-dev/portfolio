@@ -59,6 +59,7 @@ const donnees = {
 
   // statut : termine | encours
   // categorie : jeu | web | ia | outil
+  // nom : texte simple ou { fr, en }
   // image : '' tant que la capture n'est pas fournie (RESSOURCES.md)
   projets: [
     {
@@ -105,7 +106,7 @@ const donnees = {
     },
     {
       id: 'bot-trading',
-      nom: 'Bot de trading',
+      nom: { fr: 'Bot de trading', en: 'Trading bot' },
       description: {
         fr: "Robot de day trading en Python, spécialisé sur l'or (XAUUSD) : détection de figures chartistes et de niveaux de Fibonacci, gestion du risque et backtests.",
         en: 'Python day-trading bot focused on gold (XAUUSD): chart pattern and Fibonacci level detection, risk management and backtesting.'
@@ -161,7 +162,7 @@ const donnees = {
     },
     {
       id: 'projet-web',
-      nom: 'Projet web de fin de module',
+      nom: { fr: 'Projet web de fin de module', en: 'End-of-module web project' },
       description: {
         fr: 'Projet de fin de module de développement web et mobile, en licence 2.',
         en: 'End-of-module web and mobile development project, second year of bachelor.'
