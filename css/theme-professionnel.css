@@ -1,316 +1,15 @@
 /* ============================================
-   VARIABLES — Thème Professionnel
+   THÈME PROFESSIONNEL
+   Toutes les sections ci-dessous n'ont de sens
+   que pour ce thème — masquées sur les autres.
    ============================================ */
-:root{
-  --fond: #F6FAFE;
-  --fond-alt: #EAF3FC;
-  --fond-transparent: rgba(6,11,22,0.92);
-  --fond-alt-transparent: rgba(14,20,34,0.94);
-  --encre: #0B1E3A;
-  --encre-douce: #52678A;
-  --accent-1: #0F5FB0;   /* bleu principal */
-  --accent-2: #3B9DE8;   /* bleu intermédiaire */
-  --accent-clair: #7FC1FF; /* accent clair, lisible sur fond sombre */
-  --blanc: #FFFFFF;
-
-  /* Cartes en verre dépoli — cohérentes avec le bleu nuit du fond */
-  --carte-fond: rgba(255,255,255,0.07);
-  --carte-fond-hover: rgba(255,255,255,0.1);
-  --carte-bordure: rgba(255,255,255,0.16);
-  --carte-texte: #FFFFFF;
-  --carte-texte-doux: #B7C4DC;
-  --carte-accent: #7FC1FF;
-
-  /* Tokens du header — redéfinis par thème via body[data-theme="..."] */
-  --entete-teinte: 6, 11, 22; /* bleu nuit, en RGB pour la transparence */
-  --entete-texte: #C9D4E6;
-  --entete-texte-fort: #FFFFFF;
-  --entete-accent: var(--accent-clair);
-  --entete-bordure: rgba(255,255,255,0.08);
-  --entete-controle-fond: rgba(255,255,255,0.06);
-  --entete-controle-bordure: rgba(255,255,255,0.14);
-
-  --police-titre: 'Space Grotesk', sans-serif;
-  --police-texte: 'Inter', sans-serif;
-  --police-code: 'JetBrains Mono', monospace;
-
-  --hauteur-entete: 76px;
-  --transition: cubic-bezier(.22,.9,.32,1);
-}
-
-*{ box-sizing: border-box; }
-html{ scroll-behavior: smooth; }
-body{
-  margin:0;
-  font-family: var(--police-texte);
-  background: transparent;
-  color: var(--entete-texte);
-  min-height: 200vh;
-}
-
-/* ============================================
-   EN-TÊTE (HEADER)
-   ============================================ */
-.entete-site{
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: var(--hauteur-entete);
-  z-index: 1000;
-  background: rgba(var(--entete-teinte), 0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--entete-bordure);
-  transition: background .5s var(--transition), backdrop-filter .5s var(--transition), box-shadow .5s var(--transition);
-}
-.entete-site.defile{
-  background: rgba(var(--entete-teinte), 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 12px 30px -16px rgba(0,0,0,0.55);
-}
-
-.lueur-entete{
-  position: absolute;
-  bottom: -1px; left: 0; right: 0;
-  height: 2px;
-  background: var(--entete-accent);
-  opacity: 0;
-  transition: opacity .5s var(--transition);
-}
-.entete-site.defile .lueur-entete{ opacity: 1; }
-
-.entete-conteneur{
-  max-width: 1240px;
-  height: 100%;
-  margin: 0 auto;
-  padding: 0 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* ---------- Logo ---------- */
-.logo{
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  font-family: var(--police-code);
-  font-size: 1.05rem;
-  font-weight: 500;
-  text-decoration: none;
-  color: var(--entete-texte-fort);
-  letter-spacing: -0.02em;
-  white-space: nowrap;
-}
-.logo-crochet{
-  color: var(--entete-accent);
-  font-weight: 500;
-}
-.logo-texte{
-  font-family: var(--police-titre);
-  font-weight: 700;
-  margin: 0 2px;
-  color: var(--entete-texte-fort);
-}
-.logo-point{ color: var(--entete-accent); }
-.logo-curseur{
-  color: var(--entete-accent);
-  animation: clignote 1.1s step-end infinite;
-  margin-right: 4px;
-}
-@keyframes clignote{
-  0%, 49%{ opacity: 1; }
-  50%, 100%{ opacity: 0; }
-}
-
-/* ---------- Bouton menu (mobile) ---------- */
-.bouton-menu{
+body:not([data-theme="professionnel"]) .section-accueil,
+body:not([data-theme="professionnel"]) .section-apropos,
+body:not([data-theme="professionnel"]) .section-competences,
+body:not([data-theme="professionnel"]) .section-projets,
+body:not([data-theme="professionnel"]) .section-contact,
+body:not([data-theme="professionnel"]) .section-changer-theme{
   display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  width: 40px;
-  height: 40px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 1001;
-}
-.bouton-menu span{
-  display: block;
-  height: 2px;
-  width: 100%;
-  background: var(--entete-texte-fort);
-  border-radius: 2px;
-  transition: transform .35s var(--transition), opacity .35s var(--transition);
-}
-.bouton-menu[aria-expanded="true"] span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
-.bouton-menu[aria-expanded="true"] span:nth-child(2){ opacity: 0; }
-.bouton-menu[aria-expanded="true"] span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
-
-/* ---------- Navigation ---------- */
-.nav-principale{
-  display: flex;
-  align-items: center;
-  gap: 40px;
-}
-
-.liens-nav{
-  list-style: none;
-  display: flex;
-  gap: 32px;
-  margin: 0;
-  padding: 0;
-}
-.lien-nav{
-  position: relative;
-  text-decoration: none;
-  color: var(--entete-texte);
-  font-weight: 500;
-  font-size: 0.94rem;
-  padding: 8px 2px;
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  transition: color .3s var(--transition);
-}
-.index-nav{
-  font-family: var(--police-code);
-  font-size: 0.7rem;
-  color: var(--entete-accent);
-  opacity: 0.7;
-}
-.lien-nav::after{
-  content: "";
-  position: absolute;
-  left: 0; bottom: 0;
-  height: 2px;
-  width: 0%;
-  background: var(--entete-accent);
-  border-radius: 2px;
-  transition: width .35s var(--transition);
-}
-.lien-nav:hover{ color: var(--entete-texte-fort); }
-.lien-nav:hover::after{ width: 100%; }
-
-/* ---------- Contrôles (langue / thème) ---------- */
-.controles-nav{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding-left: 24px;
-  border-left: 1px solid var(--entete-bordure);
-}
-
-.menu-deroulant{ position: relative; }
-
-.bouton-controle{
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--entete-controle-fond);
-  border: 1px solid var(--entete-controle-bordure);
-  color: var(--entete-texte-fort);
-  font-family: var(--police-texte);
-  font-size: 0.85rem;
-  font-weight: 500;
-  padding: 7px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: border-color .3s var(--transition), background .3s var(--transition), transform .2s var(--transition);
-}
-.bouton-controle:hover{
-  border-color: var(--entete-accent);
-  background: rgba(255,255,255,0.1);
-}
-.bouton-controle:active{ transform: scale(0.97); }
-.icone-controle{ font-size: 0.85rem; color: var(--entete-accent); }
-.chevron{
-  font-size: 0.6rem;
-  color: var(--entete-accent);
-  transition: transform .3s var(--transition);
-}
-.menu-deroulant.ouvert .chevron{ transform: rotate(180deg); }
-
-.liste-deroulante{
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  min-width: 170px;
-  list-style: none;
-  margin: 0;
-  padding: 6px;
-  background: rgb(14,20,34);
-  border: 1px solid var(--entete-bordure);
-  border-radius: 14px;
-  box-shadow: 0 16px 40px -14px rgba(0,0,0,0.6);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-8px) scale(0.98);
-  transition: opacity .25s var(--transition), transform .25s var(--transition), visibility .25s;
-}
-.menu-deroulant.ouvert .liste-deroulante{
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0) scale(1);
-}
-.option-deroulante{
-  display: block;
-  width: 100%;
-  text-align: left;
-  background: none;
-  border: none;
-  padding: 9px 12px;
-  font-family: var(--police-texte);
-  font-size: 0.85rem;
-  color: var(--entete-texte);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background .2s var(--transition), color .2s var(--transition);
-}
-.option-deroulante:hover{ background: rgba(255,255,255,0.08); color: var(--entete-texte-fort); }
-.option-deroulante.active{ color: var(--accent-clair); font-weight: 600; }
-.option-deroulante.active::before{ content: "● "; font-size: 0.6rem; color: var(--accent-clair); }
-
-/* ============================================
-   MOBILE
-   ============================================ */
-@media (max-width: 880px){
-  .bouton-menu{ display: flex; }
-
-  .nav-principale{
-    position: fixed;
-    top: 0; right: 0;
-    height: 100vh;
-    width: min(320px, 80vw);
-    background: rgb(var(--entete-teinte));
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: calc(var(--hauteur-entete) + 20px) 28px 28px;
-    gap: 28px;
-    box-shadow: -20px 0 50px -20px rgba(0,0,0,0.5);
-    transform: translateX(100%);
-    transition: transform .4s var(--transition);
-  }
-  .nav-principale.ouvert{ transform: translateX(0); }
-
-  .liens-nav{
-    flex-direction: column;
-    gap: 18px;
-    width: 100%;
-  }
-  .controles-nav{
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-    padding-left: 0;
-    border-left: none;
-    padding-top: 18px;
-    border-top: 1px solid var(--entete-bordure);
-  }
-  .bouton-controle{ width: 100%; justify-content: space-between; }
-  .liste-deroulante{ position: static; margin-top: 6px; box-shadow: none; border: 1px solid var(--entete-bordure); }
 }
 
 /* ============================================
@@ -362,31 +61,6 @@ body{
 }
 .accueil-langage i{ color: var(--accent-clair); margin-right: 6px; }
 .accueil-actions{ display: flex; gap: 16px; flex-wrap: wrap; }
-.bouton-action{
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 26px;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  text-decoration: none;
-  transition: transform .25s var(--transition), box-shadow .25s var(--transition), background .25s var(--transition);
-}
-.bouton-principal{
-  background: var(--accent-1);
-  color: var(--blanc);
-  box-shadow: 0 10px 24px -10px rgba(15,95,176,0.55);
-}
-.bouton-principal:hover{ transform: translateY(-3px); box-shadow: 0 16px 30px -10px rgba(15,95,176,0.6); }
-.bouton-secondaire{
-  background: var(--carte-fond);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: var(--entete-texte-fort);
-  border: 1px solid var(--carte-bordure);
-}
-.bouton-secondaire:hover{ transform: translateY(-3px); border-color: var(--accent-clair); background: var(--carte-fond-hover); }
 
 .accueil-visuel{ display: flex; justify-content: center; }
 .carte-photo{
@@ -798,17 +472,41 @@ body{
 .lien-projet:hover{ color: var(--carte-accent); }
 .lien-projet i{ font-size: 0.85rem; }
 
+.lien-telechargement{ color: var(--carte-texte); }
+.lien-telechargement:hover{ color: var(--carte-accent); }
+
+/* ---------- Badge statut projet ---------- */
+.badge-statut{
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--police-code);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.badge-termine{
+  background: rgba(74,222,128,0.18);
+  color: #4ade80;
+  border: 1px solid rgba(74,222,128,0.4);
+}
+.badge-encours{
+  background: rgba(251,191,36,0.18);
+  color: #fbbf24;
+  border: 1px solid rgba(251,191,36,0.4);
+}
+
 @media (max-width: 1024px){
   .grille-projets{ grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px){
   .grille-projets{ grid-template-columns: 1fr; }
 }
-
-.lien-telechargement{
-  color: var(--carte-texte);
-}
-.lien-telechargement:hover{ color: var(--carte-accent); }
 
 /* ============================================
    SECTION CONTACT
@@ -872,6 +570,13 @@ body{
   border: 1px solid var(--carte-bordure);
   box-shadow: 0 25px 55px -28px rgba(0,0,0,0.55);
 }
+.formulaire-titre{
+  font-family: var(--police-titre);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--carte-texte);
+  margin: 0 0 22px;
+}
 .champ-groupe{ margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
 .champ-groupe label{ font-size: 0.85rem; font-weight: 600; color: var(--carte-texte); }
 .champ-groupe input, .champ-groupe textarea{
@@ -897,45 +602,6 @@ body{
 
 @media (max-width: 880px){
   .contact-conteneur{ grid-template-columns: 1fr; }
-}
-
-/* ---------- Bulle flottante WhatsApp ---------- */
-.bulle-whatsapp{
-  position: fixed;
-  bottom: 28px; right: 28px;
-  width: 60px; height: 60px;
-  border-radius: 50%;
-  background: #25D366;
-  color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.7rem;
-  text-decoration: none;
-  box-shadow: 0 14px 30px -10px rgba(37,211,102,0.6);
-  z-index: 900;
-  transition: transform .25s var(--transition);
-}
-.bulle-whatsapp:hover{ transform: scale(1.08); }
-.anneau-pulse{
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 2px solid #25D366;
-  animation: anneauPulse 2.2s ease-out infinite;
-}
-.formulaire-titre{
-  font-family: var(--police-titre);
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--carte-texte);
-  margin: 0 0 22px;
-}
-@keyframes anneauPulse{
-  0%{ transform: scale(1); opacity: 0.6; }
-  100%{ transform: scale(1.6); opacity: 0; }
-}
-
-@media (max-width: 640px){
-  .bulle-whatsapp{ width: 52px; height: 52px; font-size: 1.4rem; bottom: 20px; right: 20px; }
 }
 
 /* ============================================
@@ -974,149 +640,3 @@ body{
   transition: transform .4s var(--transition);
 }
 .bouton-changer-theme:hover i{ transform: rotate(180deg); }
-/* ============================================
-   FOOTER
-   ============================================ */
-.pied-page{
-  background: rgb(var(--entete-teinte));
-  color: var(--entete-texte);
-  padding: 60px 28px 30px;
-}
-.pied-conteneur{ max-width: 1240px; margin: 0 auto; }
-
-.pied-haut{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding-bottom: 36px;
-  border-bottom: 1px solid var(--entete-bordure);
-}
-.pied-logo{ color: var(--entete-texte-fort); }
-
-.pied-milieu{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 24px;
-  padding: 30px 0;
-}
-.pied-liens{ display: flex; gap: 26px; flex-wrap: wrap; }
-.pied-liens a{
-  color: var(--entete-texte);
-  text-decoration: none;
-  font-size: 0.92rem;
-  transition: color .2s var(--transition);
-}
-.pied-liens a:hover{ color: var(--entete-texte-fort); }
-
-.pied-reseaux{ display: flex; gap: 14px; }
-.pied-reseaux a{
-  width: 38px; height: 38px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--entete-controle-fond);
-  border: 1px solid var(--entete-controle-bordure);
-  color: var(--entete-texte-fort);
-  text-decoration: none;
-  transition: background .25s var(--transition), transform .25s var(--transition), border-color .25s var(--transition);
-}
-.pied-reseaux a:hover{
-  background: var(--entete-accent);
-  border-color: var(--entete-accent);
-  color: rgb(var(--entete-teinte));
-  transform: translateY(-3px);
-}
-
-.pied-bas{
-  padding-top: 22px;
-  text-align: center;
-  font-size: 0.82rem;
-  color: var(--entete-texte);
-  opacity: 0.7;
-}
-
-@media (max-width: 640px){
-  .pied-haut, .pied-milieu{ flex-direction: column; align-items: flex-start; }
-  .pied-reseaux{ order: 2; }
-}
-
-/* ============================================
-   ARRIÈRE-PLAN ANIMÉ DU CORPS DE PAGE
-   ============================================ */
-.fond-anime{
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  background: #060B16;
-}
-
-.particule{
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.9;
-}
-
-.p1{ width: 3px; height: 3px; top: 12%; left: 8%;  background: var(--accent-clair); box-shadow: 0 0 10px 2px var(--accent-clair); animation: deriverA 26s linear infinite; }
-.p2{ width: 2px; height: 2px; top: 68%; left: 14%; background: var(--accent-2);    box-shadow: 0 0 8px 1px var(--accent-2);   animation: deriverB 32s linear infinite; }
-.p3{ width: 4px; height: 4px; top: 30%; left: 82%; background: var(--accent-clair); box-shadow: 0 0 12px 2px var(--accent-clair); animation: deriverC 38s linear infinite; }
-.p4{ width: 2px; height: 2px; top: 78%; left: 70%; background: var(--accent-2);    box-shadow: 0 0 8px 1px var(--accent-2);   animation: deriverA 30s linear infinite reverse; }
-.p5{ width: 2px; height: 2px; top: 46%; left: 46%; background: var(--accent-clair); box-shadow: 0 0 8px 1px var(--accent-clair); animation: deriverB 22s linear infinite; }
-.p6{ width: 3px; height: 3px; top: 8%;  left: 60%; background: var(--accent-2);    box-shadow: 0 0 10px 2px var(--accent-2);  animation: deriverC 34s linear infinite reverse; }
-.p7{ width: 3px; height: 3px; top: 88%; left: 30%; background: var(--accent-clair); box-shadow: 0 0 10px 2px var(--accent-clair); animation: deriverA 40s linear infinite; }
-.p8{ width: 2px; height: 2px; top: 55%; left: 92%; background: var(--accent-2);    box-shadow: 0 0 8px 1px var(--accent-2);   animation: deriverB 28s linear infinite reverse; }
-
-@keyframes deriverA{
-  0%{ transform: translate(0,0); }
-  25%{ transform: translate(60px, -40px); }
-  50%{ transform: translate(120px, 20px); }
-  75%{ transform: translate(60px, 60px); }
-  100%{ transform: translate(0,0); }
-}
-@keyframes deriverB{
-  0%{ transform: translate(0,0); }
-  33%{ transform: translate(-80px, 50px); }
-  66%{ transform: translate(-30px, -60px); }
-  100%{ transform: translate(0,0); }
-}
-@keyframes deriverC{
-  0%{ transform: translate(0,0); }
-  50%{ transform: translate(-100px, 80px); }
-  100%{ transform: translate(0,0); }
-}
-
-@media (max-width: 640px){
-  .particule{ opacity: 0.6; }
-}
-@media (prefers-reduced-motion: reduce){
-  .particule{ animation: none; }
-}
-
-/* ---------- Badge statut projet ---------- */
-.badge-statut{
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  font-family: var(--police-code);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  padding: 5px 10px;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-.badge-termine{
-  background: rgba(74,222,128,0.18);
-  color: #4ade80;
-  border: 1px solid rgba(74,222,128,0.4);
-}
-.badge-encours{
-  background: rgba(251,191,36,0.18);
-  color: #fbbf24;
-  border: 1px solid rgba(251,191,36,0.4);
-}

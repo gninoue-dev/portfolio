@@ -1,5 +1,7 @@
 // ============================================
-// Dictionnaire de traduction FR / EN
+// Dictionnaire de traduction FR / EN — contenu du thème Professionnel
+// (les libellés de nav / thème sont ici aussi car le même
+// mécanisme data-i18n traduit tout le document)
 // ============================================
 const traductions = {
   fr: {
@@ -99,72 +101,8 @@ const traductions = {
 let langueCourante = 'fr';
 
 // ============================================
-// État du header au scroll
-// ============================================
-const entete = document.getElementById('enteteSite');
-function majEtatEntete(){
-  if(window.scrollY > 20){
-    entete.classList.add('defile');
-  } else {
-    entete.classList.remove('defile');
-  }
-}
-majEtatEntete();
-window.addEventListener('scroll', majEtatEntete, { passive: true });
-
-// ============================================
-// Menu mobile
-// ============================================
-const boutonMenu = document.getElementById('boutonMenu');
-const navPrincipale = document.getElementById('navPrincipale');
-
-boutonMenu.addEventListener('click', () => {
-  const estOuvert = navPrincipale.classList.toggle('ouvert');
-  boutonMenu.setAttribute('aria-expanded', estOuvert);
-});
-
-document.querySelectorAll('.lien-nav').forEach(lien => {
-  lien.addEventListener('click', () => {
-    navPrincipale.classList.remove('ouvert');
-    boutonMenu.setAttribute('aria-expanded', 'false');
-  });
-});
-
-// ============================================
-// Comportement générique des menus déroulants (langue + thème)
-// ============================================
-function initMenuDeroulant(menuEl, boutonEl){
-  boutonEl.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const estOuvert = menuEl.classList.contains('ouvert');
-    fermerTousLesMenus();
-    if(!estOuvert){
-      menuEl.classList.add('ouvert');
-      boutonEl.setAttribute('aria-expanded', 'true');
-    }
-  });
-}
-
-function fermerTousLesMenus(){
-  document.querySelectorAll('.menu-deroulant').forEach(menu => {
-    menu.classList.remove('ouvert');
-    menu.querySelector('.bouton-controle')?.setAttribute('aria-expanded', 'false');
-  });
-}
-
-document.addEventListener('click', fermerTousLesMenus);
-
-const menuLangue = document.getElementById('menuLangue');
-const menuTheme = document.getElementById('menuTheme');
-initMenuDeroulant(menuLangue, document.getElementById('boutonLangue'));
-initMenuDeroulant(menuTheme, document.getElementById('boutonTheme'));
-
-// ============================================
 // Application de la langue sur toute la page
 // ============================================
-const langueActuelle = document.getElementById('langueActuelle');
-const themeActuel = document.getElementById('themeActuel');
-
 function appliquerLangue(langue){
   langueCourante = langue;
   const dico = traductions[langue];
@@ -179,9 +117,7 @@ function appliquerLangue(langue){
     if(dico[cle] !== undefined) el.innerHTML = dico[cle];
   });
 
-  document.documentElement.lang = langue;
-  langueActuelle.textContent = langue.toUpperCase();
-
+  const themeActuel = document.getElementById('themeActuel');
   const themeCourant = document.body.dataset.theme || 'professionnel';
   themeActuel.textContent = dico[`theme.${themeCourant}`];
 
@@ -189,29 +125,14 @@ function appliquerLangue(langue){
   rendreProjets();
 }
 
-document.querySelectorAll('[data-langue]').forEach(bouton => {
-  bouton.addEventListener('click', () => {
-    document.querySelectorAll('[data-langue]').forEach(b => b.classList.remove('active'));
-    bouton.classList.add('active');
-    appliquerLangue(bouton.dataset.langue);
-  });
-});
+// Le bouton langue (commun.js) déclenche cet événement
+document.addEventListener('changementLangue', (e) => appliquerLangue(e.detail.langue));
 
-// ============================================
-// Sélection du thème (Professionnel / Gaming / Style personnel)
-// ============================================
-const ordreThemes = ['professionnel', 'gaming', 'personnel'];
-
-function appliquerTheme(choix){
-  document.querySelectorAll('[data-choix-theme]').forEach(b => {
-    b.classList.toggle('active', b.dataset.choixTheme === choix);
-  });
-  themeActuel.textContent = traductions[langueCourante][`theme.${choix}`];
-  document.body.dataset.theme = choix;
-}
-
-document.querySelectorAll('[data-choix-theme]').forEach(bouton => {
-  bouton.addEventListener('click', () => appliquerTheme(bouton.dataset.choixTheme));
+// Le bouton thème (commun.js) déclenche cet événement — on
+// met juste à jour le libellé traduit affiché dans le header
+document.addEventListener('changementTheme', (e) => {
+  const themeActuel = document.getElementById('themeActuel');
+  themeActuel.textContent = traductions[langueCourante][`theme.${e.detail.theme}`];
 });
 
 // ============================================
