@@ -1,5 +1,7 @@
 # Ressources à fournir
 
+Liste courte des noms exacts à utiliser : voir `NOMS_RESSOURCES.md`.
+
 Tant qu'un fichier manque, le site affiche un espace réservé propre (jamais de lien cassé).
 Après avoir déposé un fichier, renseigner le chemin indiqué dans `js/donnees.js`.
 
@@ -20,7 +22,6 @@ Après avoir déposé un fichier, renseigner le chemin indiqué dans `js/donnees
 | Ressource | Fichier attendu | Dossier | Format | Taille recommandée | Remarque |
 |---|---|---|---|---|---|
 | Capture TP PRAD 1 | `prad1.webp` | `res/projets/` | WebP | 1280 x 720 px | projet `prad1` |
-| Capture Bot Ozen MD Panel | `ozen.webp` | `res/projets/` | WebP | 1280 x 720 px | projet `ozen` |
 | Capture FocusFlow | `focusflow.webp` | `res/projets/` | WebP | 1280 x 720 px | projet `focusflow` |
 | Capture projet web de fin de module | `projet-web.webp` | `res/projets/` | WebP | 1280 x 720 px | projet `projet-web` |
 | Image de partage (réseaux sociaux) | `og-image.jpg` | `res/` | JPG | 1200 x 630 px, moins de 300 Ko | remplacer `res/photo-profil-720.jpg` dans la balise `og:image` de `index.html` |

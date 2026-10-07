@@ -446,6 +446,13 @@ body[data-theme="gaming"] ::selection{ background: var(--jeu-rose); color: #fff;
   border-top-color: var(--jeu-or);
   animation: tourner .8s steps(8) infinite;
 }
+.jeu-titre-secondaires{ display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.jeu-titre-secondaires > span, .jeu-menu-pause > span, .jeu-modale-actions > span{ display: contents; }
+.jeu-bouton-cv{ border-color: var(--jeu-vert); color: #d8ffe9; }
+.jeu-bouton-cv i{ color: var(--jeu-vert); }
+.jeu-bouton-cv:hover{ border-color: #fff; background: #1d4a3a; }
+.jeu-bouton-cv .bouton-cv-format{ background: var(--jeu-vert); color: #0b0918; border-radius: 2px; }
+.jeu-bouton-cv-lecture{ margin-top: 14px; }
 .jeu-titre-duree{ margin: 0; font-size: .95rem; color: var(--jeu-texte-doux); }
 .jeu-titre-controles{
   list-style: none;

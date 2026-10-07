@@ -84,9 +84,12 @@
             <div class="jeu-titre-actions" id="jeuTitreActions">
               <p class="jeu-chargement" id="jeuChargement"><span class="jeu-chargeur" aria-hidden="true"></span><span data-i18n="jeu.chargement"></span></p>
             </div>
-            <button class="jeu-bouton jeu-bouton-secondaire" id="jeuTitreLecture">
-              <i class="fa-solid fa-book-open" aria-hidden="true"></i> <span data-i18n="jeu.mode-lecture"></span>
-            </button>
+            <div class="jeu-titre-secondaires">
+              <button class="jeu-bouton jeu-bouton-secondaire" id="jeuTitreLecture">
+                <i class="fa-solid fa-book-open" aria-hidden="true"></i> <span data-i18n="jeu.mode-lecture"></span>
+              </button>
+              <span data-zone-cv="jeu-bouton jeu-bouton-cv"></span>
+            </div>
             <p class="jeu-titre-duree" data-i18n="jeu.duree"></p>
             <ul class="jeu-titre-controles">
               <li><i class="fa-solid fa-keyboard" aria-hidden="true"></i><span data-i18n="jeu.controles-clavier"></span></li>
@@ -269,6 +272,7 @@
           <button class="jeu-bouton" data-pause="lecture"><i class="fa-solid fa-book-open" aria-hidden="true"></i> ${t('jeu.mode-lecture')}</button>
           <button class="jeu-bouton" data-pause="son"><i class="fa-solid ${jeu.audio.actif ? 'fa-volume-high' : 'fa-volume-xmark'}" aria-hidden="true"></i> ${t(jeu.audio.actif ? 'jeu.son-active' : 'jeu.son-coupe')}</button>
           <button class="jeu-bouton" data-pause="theme"><i class="fa-solid fa-palette" aria-hidden="true"></i> ${t('jeu.changer-theme')}</button>
+          <span data-zone-cv="jeu-bouton jeu-bouton-cv"></span>
           <button class="jeu-bouton jeu-bouton-danger" data-pause="recommencer"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i> <span>${t('jeu.recommencer')}</span></button>
         </div>
         <h3 class="jeu-modale-sous-titre">${t('jeu.controles')}</h3>
@@ -279,6 +283,7 @@
         </ul>
         <h3 class="jeu-modale-sous-titre">${t('jeu.fin-succes')}</h3>
         ${htmlSucces(jeu.etat.succes)}`, () => jeu && jeu.mettreEnPause(false));
+      remplirZonesCv($('#jeuModaleBoite'));
 
       $('#jeuModaleBoite').addEventListener('click', (e) => {
         const bouton = e.target.closest('[data-pause]');
@@ -328,8 +333,10 @@
         </ul>
         <div class="jeu-modale-actions">
           <button class="jeu-bouton jeu-bouton-principal" data-fin="ecrire"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> ${t('jeu.ecrire')}</button>
+          <span data-zone-cv="jeu-bouton jeu-bouton-cv"></span>
           <button class="jeu-bouton" data-fermer><i class="fa-solid fa-person-walking" aria-hidden="true"></i> ${t('jeu.continuer-explorer')}</button>
         </div>`, quandFerme);
+      remplirZonesCv($('#jeuModaleBoite'));
       $('#jeuModaleBoite').querySelector('[data-fin="ecrire"]').addEventListener('click', () => {
         fermerModale(true);
         ouvrirLecture('contact');
@@ -350,7 +357,7 @@
     return [
       projet.lienCode
         ? `<a class="jeu-bouton" href="${projet.lienCode}" target="_blank" rel="noopener"><i class="fa-brands fa-github" aria-hidden="true"></i> ${t('projets.code')}</a>`
-        : `<span class="jeu-bouton jeu-bouton-inactif"><i class="fa-solid fa-lock" aria-hidden="true"></i> ${t('projets.code-prive')}</span>`,
+        : `<span class="jeu-bouton jeu-bouton-inactif"><i class="fa-solid fa-lock" aria-hidden="true"></i> ${t(projet.codeBientot ? 'projets.code-bientot' : 'projets.code-prive')}</span>`,
       projet.lienDemo
         ? `<a class="jeu-bouton" href="${projet.lienDemo}" target="_blank" rel="noopener"><i class="fa-solid fa-play" aria-hidden="true"></i> ${t('projets.demo')}</a>`
         : ''
@@ -494,6 +501,7 @@
           <p class="jeu-lecture-role">${t('profil.role-court')} · ${t('pro.langage')} <strong>${p.langageFavori}</strong></p>
           <p class="jeu-lecture-intro"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> ${tr(p.ville)} · <i class="fa-solid fa-gamepad" aria-hidden="true"></i> ${p.pseudoJeu}</p>
           <p class="jeu-lecture-intro">${t('jeu.lecture-intro')}</p>
+          <span data-zone-cv="jeu-bouton jeu-bouton-cv jeu-bouton-cv-lecture"></span>
         </div>
       </header>
 
@@ -569,6 +577,7 @@
         </div>
       </section>`;
     brancherFormulaire($('#jeuFormulaire'), $('#jeuStatut'), $('#jeuEnvoyer'));
+    remplirZonesCv($('#jeuLectureContenu'));
   }
 
   function ouvrirLecture(section) {

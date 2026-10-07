@@ -51,6 +51,7 @@
                 <span data-i18n="pro.bouton-projets"></span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
               <a href="#contact" data-section="contact" class="bouton-action bouton-secondaire">
                 <i class="fa-solid fa-envelope" aria-hidden="true"></i> <span data-i18n="pro.bouton-contact"></span></a>
+              <span data-zone-cv="bouton-action pro-bouton-cv"></span>
               <a href="${donnees.liens.github}" target="_blank" rel="noopener" class="pro-bouton-icone" aria-label="GitHub" title="GitHub">
                 <i class="fa-brands fa-github" aria-hidden="true"></i></a>
             </div>
@@ -136,6 +137,14 @@
             <div class="pro-contact-intro pro-revele">
               <p class="pro-contact-sous-titre" data-i18n="contact.sous-titre"></p>
               <p class="pro-disponibilite"><span class="pro-point-dispo" aria-hidden="true"></span><span data-i18n="contact.dispo"></span></p>
+              <div class="pro-carte-cv">
+                <span class="pro-carte-cv-icone"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span>
+                <div>
+                  <p class="pro-carte-cv-titre" data-i18n="cv.titre"></p>
+                  <p class="pro-carte-cv-texte" data-i18n="cv.texte"></p>
+                </div>
+                <span data-zone-cv="bouton-action bouton-principal"></span>
+              </div>
               <ul class="pro-contact-infos">
                 <li><a href="mailto:${donnees.liens.email}"><span class="pro-contact-icone"><i class="fa-solid fa-envelope" aria-hidden="true"></i></span>
                   <span><small data-i18n="contact.email"></small>${donnees.liens.email}</span></a></li>
@@ -242,7 +251,7 @@
            </div>`;
       const lienCode = projet.lienCode
         ? `<a href="${projet.lienCode}" target="_blank" rel="noopener" class="pro-lien-projet"><i class="fa-brands fa-github" aria-hidden="true"></i> ${t('projets.code')}</a>`
-        : `<span class="pro-lien-projet pro-lien-inactif"><i class="fa-solid fa-lock" aria-hidden="true"></i> ${t('projets.code-prive')}</span>`;
+        : `<span class="pro-lien-projet pro-lien-inactif"><i class="fa-solid fa-lock" aria-hidden="true"></i> ${t(projet.codeBientot ? 'projets.code-bientot' : 'projets.code-prive')}</span>`;
       const lienDemo = projet.lienDemo
         ? `<a href="${projet.lienDemo}" target="_blank" rel="noopener" class="pro-lien-projet pro-lien-demo"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> ${t('projets.demo')}</a>`
         : '';

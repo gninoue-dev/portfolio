@@ -362,15 +362,23 @@ function lienDemandeCv() {
 // Bouton CV : téléchargement si le PDF existe, sinon demande par email
 function htmlBoutonCv(classe = 'bouton-action bouton-principal') {
   if (donnees.liens.cv) {
-    return `<a href="${donnees.liens.cv}" download class="${classe}">
-      <i class="fa-solid fa-download" aria-hidden="true"></i> <span>${t('footer.cv')}</span></a>`;
+    return `<a href="${donnees.liens.cv}" download class="${classe} bouton-cv">
+      <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> <span>${t('footer.cv')}</span>
+      <small class="bouton-cv-format">PDF</small></a>`;
   }
-  return `<a href="${lienDemandeCv()}" class="${classe}">
+  return `<a href="${lienDemandeCv()}" class="${classe} bouton-cv">
     <i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span>${t('footer.cv-demande')}</span></a>`;
 }
 
+// Remplit chaque emplacement data-zone-cv="classes" posé par un thème
+function remplirZonesCv(racine = document) {
+  racine.querySelectorAll('[data-zone-cv]').forEach(el => {
+    el.innerHTML = htmlBoutonCv(el.dataset.zoneCv || undefined);
+  });
+}
+
 function rendrePiedPage() {
-  document.getElementById('zoneCv').innerHTML = htmlBoutonCv();
+  remplirZonesCv();
 
   const reseaux = [
     ...RESEAUX.filter(r => donnees.liens[r.cle]).map(r => ({ ...r, url: donnees.liens[r.cle], externe: true })),

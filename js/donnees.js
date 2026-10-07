@@ -34,7 +34,8 @@ const donnees = {
       'Watch Dogs', 'GTA San Andreas',
       { fr: 'God of War (I à III)', en: 'God of War (I to III)' }
     ],
-    personnagesTekken: ['Bob', 'Nina']
+    personnagesTekken: ['Bob', 'Nina'],
+    idole: { fr: 'Kylian Mbappé (football)', en: 'Kylian Mbappé (football)' }
   },
 
   liens: {
@@ -42,10 +43,15 @@ const donnees = {
     whatsapp: '2250103508128',
     whatsappAffiche: '+225 01 03 50 81 28',
     github: 'https://github.com/gninoue-dev',
-    linkedin: '',
+    // ---------- Réseaux : coller l'adresse entre les guillemets ----------
+    // Un réseau vide n'est pas affiché ; rempli, son icône apparaît dans le footer.
+    linkedin: '', // ex. 'https://www.linkedin.com/in/ton-profil'
+    tiktok: '', // ex. 'https://www.tiktok.com/@ton-pseudo'
     facebook: '',
-    tiktok: '',
     instagram: '',
+    // ---------- CV ----------
+    // Déposer le PDF dans res/ puis écrire : cv: 'res/cv-gninoue-jean-marc.pdf'
+    // Le bouton passe alors de "Demander mon CV" à "Télécharger mon CV" partout.
     cv: '',
     // Point d'accès du formulaire de contact (FormSubmit, en AJAX)
     formulaire: 'https://formsubmit.co/ajax/Devgninoue@gmail.com'
@@ -79,6 +85,7 @@ const donnees = {
   // statut : termine | encours
   // categorie : jeu | web | ia | outil
   // nom : texte simple ou { fr, en }
+  // codeBientot : true si le code sera publié plus tard (au lieu de "Code privé")
   // vedette : true pour le projet phare (affiché en premier, avec un badge)
   // image : '' tant que la capture n'est pas fournie (RESSOURCES.md)
   projets: [
@@ -91,7 +98,7 @@ const donnees = {
       },
       technos: ['JavaScript'],
       categorie: 'web',
-      image: '',
+      image: '', // capture : 'res/projets/projet-web.webp'
       lienCode: 'https://github.com/gninoue-dev/projet_web_fin_module',
       lienDemo: '',
       statut: 'encours',
@@ -106,7 +113,7 @@ const donnees = {
       },
       technos: ['Godot 4', 'GDScript', 'Blender'],
       categorie: 'jeu',
-      image: '',
+      image: '', // capture : 'res/projets/zaomon.webp'
       lienCode: 'https://github.com/gninoue-dev/ZAOMON',
       lienDemo: '',
       statut: 'encours'
@@ -120,7 +127,7 @@ const donnees = {
       },
       technos: ['Python', 'FastAPI', 'React', 'WebSocket', 'After Effects'],
       categorie: 'ia',
-      image: '',
+      image: '', // capture : 'res/projets/editsensei.webp'
       lienCode: 'https://github.com/gninoue-dev/EditSensei_AI',
       lienDemo: '',
       statut: 'encours'
@@ -134,8 +141,9 @@ const donnees = {
       },
       technos: ['PHP', 'MySQL', 'JavaScript'],
       categorie: 'web',
-      image: '',
-      lienCode: '',
+      image: '', // capture : 'res/projets/examsecure.webp'
+      lienCode: '', // encore en local : mettre l'URL GitHub ici une fois publié
+      codeBientot: true,
       lienDemo: '',
       statut: 'encours'
     },
@@ -148,7 +156,7 @@ const donnees = {
       },
       technos: ['Python', 'MetaTrader 5'],
       categorie: 'outil',
-      image: '',
+      image: '', // capture : 'res/projets/bot-trading.webp'
       lienCode: 'https://github.com/gninoue-dev/Bot_trading',
       lienDemo: '',
       statut: 'encours'
@@ -162,8 +170,9 @@ const donnees = {
       },
       technos: ['Python', 'C++', 'WebSocket'],
       categorie: 'outil',
-      image: '',
-      lienCode: '',
+      image: '', // capture : 'res/projets/prad1.webp'
+      lienCode: '', // encore en local : mettre l'URL GitHub ici une fois publié
+      codeBientot: true,
       lienDemo: '',
       statut: 'termine'
     },
@@ -176,7 +185,7 @@ const donnees = {
       },
       technos: ['Java'],
       categorie: 'outil',
-      image: '',
+      image: '', // capture : 'res/projets/focusflow.webp'
       lienCode: 'https://github.com/gninoue-dev/FocusFlow',
       lienDemo: '',
       statut: 'encours'
@@ -190,7 +199,7 @@ const donnees = {
       },
       technos: ['JavaScript', 'Canvas'],
       categorie: 'jeu',
-      image: '',
+      image: '', // capture : 'res/projets/gamerpg.webp'
       lienCode: 'https://github.com/gninoue-dev/GameRpg',
       lienDemo: 'https://gninoue-dev.github.io/GameRpg/',
       statut: 'termine'
@@ -204,7 +213,7 @@ const donnees = {
       },
       technos: ['JavaScript'],
       categorie: 'jeu',
-      image: '',
+      image: '', // capture : 'res/projets/snake.webp'
       lienCode: 'https://github.com/gninoue-dev/gameSnake',
       lienDemo: 'https://gninoue-dev.github.io/gameSnake/',
       statut: 'termine'

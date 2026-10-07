@@ -64,6 +64,7 @@
       ['perso.fiche-animes', reserve(p.animesFavoris)],
       ['perso.fiche-jeux', reserve(p.jeuxFavoris)],
       ['perso.fiche-tekken', reserve(p.personnagesTekken)],
+      ['perso.fiche-idole', reserve(p.idole)],
       ['perso.fiche-devise', reserve(p.citation)]
     ].map(([cle, valeur]) => `<div${cle === 'perso.fiche-devise' ? ' class="perso-fiche-devise"' : ''}><dt>${t(cle)}</dt><dd>${valeur}</dd></div>`).join('');
   }
@@ -94,6 +95,7 @@
             <div class="perso-actions">
               <a href="#projets" data-section="projets" class="perso-bouton perso-bouton-encre"><i class="fa-solid fa-book" aria-hidden="true"></i> <span data-i18n="perso.lire-volumes"></span></a>
               <a href="#contact" data-section="contact" class="perso-bouton"><i class="fa-solid fa-comment" aria-hidden="true"></i> <span data-i18n="perso.ecrire"></span></a>
+              <span data-zone-cv="perso-bouton perso-bouton-cv"></span>
             </div>
           </div>
 
@@ -192,6 +194,7 @@
           <div class="perso-case perso-case-papier perso-anime">
             <p class="perso-bulle perso-bulle-cri" data-i18n="contact.sous-titre"></p>
             <p class="perso-dispo"><span class="perso-point" aria-hidden="true"></span><span data-i18n="contact.dispo"></span></p>
+            <p class="perso-cv-contact"><span data-zone-cv="perso-bouton perso-bouton-cv"></span></p>
             <ul class="perso-liens-contact">
               <li><a href="mailto:${donnees.liens.email}"><i class="fa-solid fa-envelope" aria-hidden="true"></i> ${donnees.liens.email}</a></li>
               <li><a href="https://wa.me/${donnees.liens.whatsapp}" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> ${donnees.liens.whatsappAffiche}</a></li>
@@ -260,7 +263,7 @@
       const liens = [
         projet.lienCode
           ? `<a href="${projet.lienCode}" target="_blank" rel="noopener" class="perso-lien-volume"><i class="fa-brands fa-github" aria-hidden="true"></i> ${t('projets.code')}</a>`
-          : `<span class="perso-lien-volume perso-lien-inactif"><i class="fa-solid fa-lock" aria-hidden="true"></i> ${t('projets.code-prive')}</span>`,
+          : `<span class="perso-lien-volume perso-lien-inactif"><i class="fa-solid fa-lock" aria-hidden="true"></i> ${t(projet.codeBientot ? 'projets.code-bientot' : 'projets.code-prive')}</span>`,
         projet.lienDemo
           ? `<a href="${projet.lienDemo}" target="_blank" rel="noopener" class="perso-lien-volume"><i class="fa-solid fa-play" aria-hidden="true"></i> ${t('projets.demo')}</a>`
           : ''

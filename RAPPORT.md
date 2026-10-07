@@ -49,10 +49,20 @@
 - Aucun émoji, aucun dégradé dans le thème Professionnel, code en français.
 
 ## Ce qui reste à faire (par Dev)
-- Les réponses de `QUESTIONS.md` sont intégrées. Il reste 4 précisions en bas du fichier : URL d'ExamSecure et de TP PRAD 1, adresse TikTok, LinkedIn, "Kylian".
+- Toutes les réponses de `QUESTIONS.md` sont intégrées.
+- Déposer le CV et les captures avec les noms exacts de `NOMS_RESSOURCES.md`, puis remplir les lignes prévues dans `js/donnees.js`.
+- Ajouter plus tard les liens LinkedIn et TikTok, ainsi que ceux d'ExamSecure et de TP PRAD 1 une fois publiés : les emplacements sont prévus.
 - Déposer les fichiers listés dans `RESSOURCES.md` (CV PDF, captures des projets).
 - Activer FormSubmit : le premier message envoyé déclenche un email de confirmation à valider.
 - Tester une fois sur un vrai téléphone : le tactile a été vérifié en émulation, pas sur un appareil réel.
+
+## Mise en avant du CV
+Un bouton CV apparaît dans les 3 thèmes :
+- Professionnel : dans l'accueil, dans une carte dédiée de la section contact, et dans le footer.
+- Gaming : sur l'écran-titre, en mode lecture, dans la pause, sur l'écran de fin, et dans le footer.
+- Style personnel : sur la couverture, dans le contact, et dans le footer.
+
+Le bouton affiche "Demander mon CV" (email pré-rempli) tant que le PDF n'est pas renseigné, puis "Télécharger mon CV (PDF)" dès que la ligne `cv:` est remplie. Les deux états ont été testés.
 
 ## Décisions principales
 Le détail se trouve dans `NOTES.md` :

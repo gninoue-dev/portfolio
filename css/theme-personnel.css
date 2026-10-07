@@ -261,6 +261,12 @@ body[data-theme="personnel"] ::selection{ background: var(--perso-neon); color: 
 .perso-bouton-encre{ background: var(--perso-rouge-bouton); color: #fff; }
 .perso-bouton-neon{ background: var(--perso-neon); color: var(--perso-encre); box-shadow: 5px 5px 0 var(--perso-rouge); }
 .perso-bouton-neon:hover{ box-shadow: 7px 7px 0 var(--perso-rouge); }
+.perso-bouton-cv{ background: var(--perso-neon); box-shadow: 5px 5px 0 var(--perso-rouge); }
+.perso-bouton-cv:hover{ box-shadow: 7px 7px 0 var(--perso-rouge); }
+.perso-bouton-cv .bouton-cv-format{ background: var(--perso-encre); color: var(--perso-neon); border-radius: 0; }
+.perso-actions > span, .perso-cv-contact > span{ display: contents; }
+.perso-cv-contact{ margin: 0 0 18px; }
+.perso-cv-contact .perso-bouton{ width: 100%; }
 .perso-bouton:disabled{ opacity: .7; cursor: progress; }
 
 /* ---------- Case photo ---------- */

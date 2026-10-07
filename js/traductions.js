@@ -41,6 +41,8 @@ const traductions = {
     'footer.cv': 'Télécharger mon CV',
     'footer.cv-demande': 'Demander mon CV',
     'footer.cv-sujet': 'Demande de CV',
+    'cv.titre': 'Mon CV',
+    'cv.texte': 'Parcours, compétences et projets sur une page.',
     'footer.credits': 'Icônes Font Awesome (CC BY 4.0) · Polices Google Fonts (OFL)',
 
     // ---------- Contenu partagé ----------
@@ -72,6 +74,7 @@ const traductions = {
     'projets.code': 'Code',
     'projets.demo': 'Démo',
     'projets.code-prive': 'Code privé',
+    'projets.code-bientot': 'Code bientôt sur GitHub',
     'projets.termine': 'Terminé',
     'projets.vedette': 'Projet phare',
     'projets.encours': 'En cours',
@@ -240,6 +243,7 @@ const traductions = {
     'perso.fiche-origine': 'Base',
     'perso.fiche-personnalite': 'En une phrase',
     'perso.fiche-tekken': 'Mains Tekken',
+    'perso.fiche-idole': 'Idole',
     'perso.a-debloquer': 'À débloquer',
     'perso.filtrer-competences': 'Filtrer les compétences',
     'perso.legende': 'Jauge de puissance : trois segments par niveau (débutant, intermédiaire, expert).',
@@ -285,6 +289,8 @@ const traductions = {
     'footer.cv': 'Download my resume',
     'footer.cv-demande': 'Request my resume',
     'footer.cv-sujet': 'Resume request',
+    'cv.titre': 'My resume',
+    'cv.texte': 'Background, skills and projects on one page.',
     'footer.credits': 'Font Awesome icons (CC BY 4.0) · Google Fonts (OFL)',
 
     // ---------- Shared content ----------
@@ -316,6 +322,7 @@ const traductions = {
     'projets.code': 'Code',
     'projets.demo': 'Demo',
     'projets.code-prive': 'Private code',
+    'projets.code-bientot': 'Code coming soon to GitHub',
     'projets.termine': 'Completed',
     'projets.vedette': 'Flagship project',
     'projets.encours': 'In progress',
@@ -484,6 +491,7 @@ const traductions = {
     'perso.fiche-origine': 'Home base',
     'perso.fiche-personnalite': 'In one sentence',
     'perso.fiche-tekken': 'Tekken mains',
+    'perso.fiche-idole': 'Idol',
     'perso.a-debloquer': 'Locked',
     'perso.filtrer-competences': 'Filter skills',
     'perso.legende': 'Power gauge: three segments per level (beginner, intermediate, expert).',

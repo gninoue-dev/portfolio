@@ -123,3 +123,9 @@ C. **LinkedIn : la réponse est vide. "aucun" ?**
 D. **"Mon joueur phare c'est Kylian" : Kylian est-il un joueur professionnel de Tekken que tu admires, ou ton propre pseudo ? Faut-il l'afficher ?**
    (Pour l'instant, seuls tes personnages Bob et Nina sont affichés.)
    Réponse :
+
+### Réponses reçues
+
+- A : ExamSecure et TP PRAD 1 sont encore en local. Le site affiche "Code bientôt sur GitHub" ; l'emplacement du lien est prévu dans `js/donnees.js`.
+- B, C : TikTok et LinkedIn seront ajoutés par Dev. Les emplacements sont commentés dans `js/donnees.js` (voir `NOMS_RESSOURCES.md`).
+- D : Kylian Mbappé, idole football de Dev, est ajouté à la fiche personnage (ligne "Idole").
