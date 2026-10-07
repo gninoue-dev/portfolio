@@ -62,3 +62,17 @@ Idées d'extension :
 - Personnages supplémentaires pour les études et les objectifs de Dev.
 - Tableau des meilleurs temps (nécessite un petit backend).
 - Manette (Gamepad API).
+
+## 4. Thème Style personnel : "DEV, le manga"
+
+Direction créative (5 lignes) :
+1. Le portfolio devient un volume de manga dont Dev est le héros : couverture, chapitres numérotés, "À suivre..." en dernière page.
+2. Deux matières qui alternent : planches papier (crème, encre noire, rouge, trames de points, lignes de vitesse) et pages "nuit" cyberpunk (terminal, néon jaune acide et cyan, grille).
+3. Typographies japonaises décoratives (Dela Gothic One) avec kanji et onomatopées originaux (開発者, 物語, 技術, 作品, 連絡, ドン, ゴゴゴ, キラッ), jamais de personnage ni de logo existant.
+4. Le contenu garde sa forme propre : fiche personnage RPG, jauges de puissance façon jeu de combat, projets en couvertures de volumes inclinables.
+5. Animations GSAP (entrée "coup de poing", parallaxe des kanji), glitch RGB sur le titre ; tout se coupe avec `prefers-reduced-motion` et un repli sans GSAP existe.
+
+Décisions :
+- GSAP 3.12.5 + ScrollTrigger depuis cdnjs, chargés seulement quand ce thème est actif ; si le CDN échoue, IntersectionObserver prend le relais.
+- Les champs intimes de la fiche personnage (animes et mangas, jeux préférés, devise) affichent "À débloquer" tant que Dev n'a pas répondu dans `QUESTIONS.md` ; il suffit de remplir `donnees.profil`.
+- La photo est passée en noir et blanc contrasté avec une trame rouge (CSS uniquement, l'image n'est pas modifiée).
