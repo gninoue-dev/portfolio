@@ -3,84 +3,83 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Dev Gninoue — Portfolio</title>
+  <meta name="description" content="Portfolio de Gninoue Jean-Marc (Dev Gninoue) : développeur Full Stack junior, créateur de jeux vidéo et monteur vidéo.">
+  <meta name="theme-color" content="#060B16">
+  <meta property="og:title" content="Dev Gninoue — Portfolio">
+  <meta property="og:description" content="Développeur Full Stack junior, créateur de jeux vidéo et monteur vidéo. Trois thèmes, dont un jeu jouable.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="res/photo-profil-720.jpg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23060B16'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='28' font-weight='700' text-anchor='middle' fill='%237FC1FF'%3E%26lt;/%26gt;%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap"
-    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="css/commun.css">
-  <link rel="stylesheet" href="css/theme-professionnel.css">
-  <link rel="stylesheet" href="css/theme-gaming.css">
-  <link rel="stylesheet" href="css/theme-personnel.css">
+  <!-- Les CSS et JS de chaque thème sont chargés à la demande par js/commun.js -->
 </head>
 
-<body data-theme="professionnel">
+<body data-theme="professionnel" class="chargement">
 
-  <div class="fond-anime" aria-hidden="true">
-    <span class="particule p1"></span>
-    <span class="particule p2"></span>
-    <span class="particule p3"></span>
-    <span class="particule p4"></span>
-    <span class="particule p5"></span>
-    <span class="particule p6"></span>
-    <span class="particule p7"></span>
-    <span class="particule p8"></span>
-  </div>
+  <a href="#zoneTheme" class="lien-evitement" data-i18n="commun.aller-contenu">Aller au contenu</a>
 
   <header class="entete-site" id="enteteSite">
     <div class="entete-conteneur">
 
-      <a href="#accueil" class="logo">
+      <a href="#accueil" class="logo" aria-label="Dev Gninoue">
         <span class="logo-crochet">&lt;</span><span class="logo-texte">Dev<span
             class="logo-point">.</span>Gninoue</span><span class="logo-curseur">|</span><span
           class="logo-crochet">/&gt;</span>
       </a>
 
-      <button class="bouton-menu" id="boutonMenu" aria-label="Ouvrir le menu" aria-expanded="false">
+      <button class="bouton-menu" id="boutonMenu" aria-controls="navPrincipale" aria-expanded="false"
+        data-i18n-aria="commun.ouvrir-menu">
         <span></span><span></span><span></span>
       </button>
 
-      <nav class="nav-principale" id="navPrincipale">
+      <nav class="nav-principale" id="navPrincipale" data-i18n-aria="commun.nav-principale">
         <ul class="liens-nav">
-          <li><a href="#apropos" class="lien-nav"><span class="index-nav">01</span><span data-i18n="nav.apropos">À
-                propos</span></a></li>
-          <li><a href="#competences" class="lien-nav"><span class="index-nav">02</span><span
-                data-i18n="nav.competences">Compétences</span></a></li>
-          <li><a href="#projets" class="lien-nav"><span class="index-nav">03</span><span
-                data-i18n="nav.projets">Projets</span></a></li>
-          <li><a href="#contact" class="lien-nav"><span class="index-nav">04</span><span data-i18n="nav.contact">Me
-                contacter</span></a></li>
+          <li><a href="#apropos" class="lien-nav" data-section="apropos"><span class="index-nav">01</span><span
+                data-i18n="nav.apropos"></span></a></li>
+          <li><a href="#competences" class="lien-nav" data-section="competences"><span class="index-nav">02</span><span
+                data-i18n="nav.competences"></span></a></li>
+          <li><a href="#projets" class="lien-nav" data-section="projets"><span class="index-nav">03</span><span
+                data-i18n="nav.projets"></span></a></li>
+          <li><a href="#contact" class="lien-nav" data-section="contact"><span class="index-nav">04</span><span
+                data-i18n="nav.contact"></span></a></li>
         </ul>
 
         <div class="controles-nav">
 
           <div class="menu-deroulant" id="menuLangue">
-            <button class="bouton-controle" id="boutonLangue" aria-expanded="false">
-              <i class="fa-solid fa-globe icone-controle"></i>
+            <button class="bouton-controle" id="boutonLangue" aria-haspopup="true" aria-expanded="false"
+              data-i18n-aria="commun.choisir-langue">
+              <i class="fa-solid fa-globe icone-controle" aria-hidden="true"></i>
               <span id="langueActuelle">FR</span>
-              <i class="fa-solid fa-chevron-down chevron"></i>
+              <i class="fa-solid fa-chevron-down chevron" aria-hidden="true"></i>
             </button>
-            <ul class="liste-deroulante" role="menu">
-              <li><button data-langue="fr" class="option-deroulante active">Français</button></li>
-              <li><button data-langue="en" class="option-deroulante">English</button></li>
+            <ul class="liste-deroulante">
+              <li><button data-langue="fr" class="option-deroulante" lang="fr">Français</button></li>
+              <li><button data-langue="en" class="option-deroulante" lang="en">English</button></li>
             </ul>
           </div>
 
           <div class="menu-deroulant" id="menuTheme">
-            <button class="bouton-controle" id="boutonTheme" aria-expanded="false">
-              <i class="fa-solid fa-palette icone-controle"></i>
-              <span id="themeActuel">Professionnel</span>
-              <i class="fa-solid fa-chevron-down chevron"></i>
+            <button class="bouton-controle" id="boutonTheme" aria-haspopup="true" aria-expanded="false"
+              data-i18n-aria="commun.choisir-theme">
+              <i class="fa-solid fa-palette icone-controle" aria-hidden="true"></i>
+              <span id="themeActuel"></span>
+              <i class="fa-solid fa-chevron-down chevron" aria-hidden="true"></i>
             </button>
-            <ul class="liste-deroulante" role="menu">
-              <li><button data-choix-theme="professionnel" class="option-deroulante active"
-                  data-i18n="theme.professionnel">Professionnel</button></li>
-              <li><button data-choix-theme="gaming" class="option-deroulante" data-i18n="theme.gaming">Gaming</button>
-              </li>
-              <li><button data-choix-theme="personnel" class="option-deroulante" data-i18n="theme.personnel">Style
-                  personnel</button></li>
+            <ul class="liste-deroulante">
+              <li><button data-choix-theme="professionnel" class="option-deroulante"><i class="fa-solid fa-briefcase"
+                    aria-hidden="true"></i><span data-i18n="theme.professionnel"></span></button></li>
+              <li><button data-choix-theme="gaming" class="option-deroulante"><i class="fa-solid fa-gamepad"
+                    aria-hidden="true"></i><span data-i18n="theme.gaming"></span></button></li>
+              <li><button data-choix-theme="personnel" class="option-deroulante"><i class="fa-solid fa-bolt"
+                    aria-hidden="true"></i><span data-i18n="theme.personnel"></span></button></li>
             </ul>
           </div>
 
@@ -91,202 +90,65 @@
     <div class="lueur-entete"></div>
   </header>
 
-
-  <main>
-
-    <!--  ACCUEIL  -->
-    <section id="accueil" class="section-accueil">
-      <div class="accueil-conteneur">
-
-        <div class="accueil-texte">
-          <p class="accueil-salutation" data-i18n="accueil.salutation">Bienvenue sur mon portfolio</p>
-          <h1 class="accueil-titre"><span data-i18n="accueil.jesuis">Je suis</span> <br>
-            <span class="accueil-nom">Gninoue Jean-Marc</span>
-          </h1>
-          <p class="accueil-role" data-i18n-html="accueil.role">Développeur <span class="role-accent">Full Stack</span>
-            Junior</p>
-          <p class="accueil-langage"><i class="fa-solid fa-code"></i> <span data-i18n="accueil.langage">Langage favori
-              :</span> <strong>C++</strong></p>
-
-          <div class="accueil-actions">
-            <a href="#projets" class="bouton-action bouton-principal" data-i18n="accueil.bouton-projets">Voir mes
-              projets</a>
-            <a href="https://github.com/gninoue-dev" target="_blank" rel="noopener"
-              class="bouton-action bouton-secondaire">
-              <i class="fa-brands fa-github"></i> GitHub
-            </a>
-          </div>
-        </div>
-
-        <div class="accueil-visuel">
-          <div class="carte-photo">
-            <img src="res/photo-profil-720.jpg" alt="Photo de Gninoue Jean-Marc" class="photo-profil">
-            <span class="badge-flottant badge-experience">
-              <span class="badge-chiffre" data-compteur="2">0</span>
-              <span class="badge-libelle" data-i18n="badge.experience">Ans d'expérience</span>
-            </span>
-            <span class="badge-flottant badge-projets">
-              <span class="badge-chiffre" data-compteur="9">0</span>
-              <span class="badge-libelle" data-i18n="badge.projets">Projets réalisés</span>
-            </span>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="separateur-vague" aria-hidden="true">
-        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
-          <path d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z"></path>
-        </svg>
-      </div>
-    </section>
-
-    <!-- ============ À PROPOS ============ -->
-    <section id="apropos" class="section-apropos">
-      <p class="etiquette-section" data-i18n="apropos.titre">À propos de moi</p>
-
-      <div class="apropos-conteneur">
-        <div class="carte-identite">
-          <h3 class="identite-nom">Gninoue<br>Jean-Marc</h3>
-          <div class="identite-separateur"></div>
-          <p class="identite-role" data-i18n-html="apropos.role">Dev. Full Stack<br>Junior</p>
-        </div>
-
-        <p data-i18n="apropos.p1">Passionné par l'informatique et les jeux vidéo depuis l'enfance, j'ai naturellement
-          choisir de transformer cette passion en veritable projet professionnel.
-          Après l'obtention de mon baccalauréat, j'ai intégré la fillière Informatique et Génie Logiciel, domaine dans
-          lequel je poursuis actuellment ma deuxième année de licence.</p>
-        <p data-i18n="apropos.p2">En tant que développeur Full Stack junior, je conçois et developpe des sites web,
-          Applications, Bases de données, de la conception a la mise en production.
-          j'aime transformer des idées en solutions concrètes, fonctionneles et intuitives.
-        </p>
-        <p data-i18n="apropos.p3">Au-dela du développment, je m'intéresse également a d'autre domaines tels que le
-          graphisme, la modélisation 3D, le montage vidéo et la maintenance informatique.
-          Ces compétences, que je developpe en complément de mes connaissances en programmation, me permettent de créér
-          des projets plus complets en associant la technologie, la créactivité et la technique.
+  <!-- Zone remplie par le thème actif -->
+  <main id="zoneTheme" tabindex="-1">
+    <noscript>
+      <div class="sans-script">
+        <h1>Gninoue Jean-Marc — Développeur Full Stack junior</h1>
+        <p>Ce portfolio a besoin de JavaScript. Retrouvez mes projets sur
+          <a href="https://github.com/gninoue-dev">github.com/gninoue-dev</a> ou écrivez-moi à
+          devgninoue@gmail.com.
         </p>
       </div>
-    </section>
-
-    <!-- ============ COMPÉTENCES ============ -->
-    <section id="competences" class="section-competences">
-      <p class="etiquette-section" data-i18n="competences.titre">Mes compétences</p>
-      <div class="grille-competences" id="grilleCompetences"></div>
-    </section>
-
-    <!-- ============ PROJETS ============ -->
-    <section id="projets" class="section-projets">
-      <p class="etiquette-section" data-i18n="projets.titre">Mes projets</p>
-      <div class="grille-projets" id="grilleProjets"></div>
-    </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section id="contact" class="section-contact">
-      <p class="etiquette-section" data-i18n="contact.titre">Me contacter</p>
-
-      <div class="contact-conteneur">
-        <div class="contact-intro">
-          <p class="contact-disponibilite">
-            <span class="point-dispo"></span>
-            <span data-i18n="contact.dispo">Disponible pour des stages et des projets freelance rénumeré.</span>
-          </p>
-          <ul class="contact-infos">
-            <li><i class="fa-solid fa-envelope"></i> <a href="mailto:Devgninoue@gmail.com">Devgninoue@gmail.com</a></li>
-            <li><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/2250103508128" target="_blank"
-                rel="noopener">+225 01 03 50 81 28</a></li>
-            <li><i class="fa-brands fa-github"></i> <a href="https://github.com/gninoue-dev" target="_blank"
-                rel="noopener">github.com/gninoue-dev</a></li>
-          </ul>
-        </div>
-
-        <form class="formulaire-contact" id="formulaireContact">
-          <h3 class="formulaire-titre" data-i18n="contact.formulaire-titre">M'envoyer un email</h3>
-
-          <div class="champ-groupe">
-            <label for="nomContact" data-i18n="contact.label-nom">Nom</label>
-            <input type="text" id="nomContact" name="Nom" required>
-          </div>
-          <div class="champ-groupe">
-            <label for="emailContact" data-i18n="contact.label-email">Email</label>
-            <input type="email" id="emailContact" name="Email" required>
-          </div>
-          <div class="champ-groupe">
-            <label for="messageContact" data-i18n="contact.label-message">Message</label>
-            <textarea id="messageContact" name="Message" rows="5" required></textarea>
-          </div>
-
-          <button type="submit" class="bouton-action bouton-principal" id="boutonEnvoyer">
-            <i class="fa-solid fa-paper-plane"></i> <span data-i18n="contact.bouton-envoyer">Envoyer le message</span>
-          </button>
-          <p class="statut-envoi" id="statutEnvoi"></p>
-        </form>
-      </div>
-    </section>
-
-    <!-- ============ CHANGER DE THÈME ============ -->
-    <section class="section-changer-theme">
-      <button class="bouton-changer-theme" id="boutonChangerTheme">
-        <i class="fa-solid fa-shuffle"></i>
-        <span data-i18n="theme-bouton.changer">Essayer un autre thème du portfolio</span>
-      </button>
-    </section>
-
+    </noscript>
   </main>
-  <!-- ============ FOOTER ============ -->
-  <footer class="pied-page">
+
+  <footer class="pied-page" id="piedPage">
     <div class="pied-conteneur">
 
       <div class="pied-haut">
-        <a href="#accueil" class="logo pied-logo">
+        <a href="#accueil" class="logo pied-logo" aria-label="Dev Gninoue">
           <span class="logo-crochet">&lt;</span><span class="logo-texte">Dev<span
               class="logo-point">.</span>Gninoue</span><span class="logo-curseur">|</span><span
             class="logo-crochet">/&gt;</span>
         </a>
-        <a href="res/cv-gninoue-jean-marc.pdf" download class="bouton-action bouton-principal">
-          <i class="fa-solid fa-download"></i> <span data-i18n="footer.cv">Télécharger mon CV</span>
-        </a>
+        <div id="zoneCv"></div>
       </div>
 
       <div class="pied-milieu">
-        <nav class="pied-liens">
-          <a href="#accueil" data-i18n="nav.accueil">Accueil</a>
-          <a href="#apropos" data-i18n="nav.apropos">À propos</a>
-          <a href="#competences" data-i18n="nav.competences">Compétences</a>
-          <a href="#projets" data-i18n="nav.projets">Projets</a>
-          <a href="#contact" data-i18n="nav.contact">Contact</a>
+        <nav class="pied-liens" data-i18n-aria="commun.nav-pied">
+          <a href="#accueil" data-section="accueil" data-i18n="nav.accueil"></a>
+          <a href="#apropos" data-section="apropos" data-i18n="nav.apropos"></a>
+          <a href="#competences" data-section="competences" data-i18n="nav.competences"></a>
+          <a href="#projets" data-section="projets" data-i18n="nav.projets"></a>
+          <a href="#contact" data-section="contact" data-i18n="nav.contact"></a>
         </nav>
-
-        <div class="pied-reseaux">
-          <a href="https://linkedin.com/in/TON_PROFIL" target="_blank" rel="noopener" aria-label="LinkedIn"><i
-              class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://github.com/gninoue-dev" target="_blank" rel="noopener" aria-label="GitHub"><i
-              class="fa-brands fa-github"></i></a>
-          <a href="https://facebook.com/TON_PROFIL" target="_blank" rel="noopener" aria-label="Facebook"><i
-              class="fa-brands fa-facebook-f"></i></a>
-          <a href="https://tiktok.com/@TON_PSEUDO" target="_blank" rel="noopener" aria-label="TikTok"><i
-              class="fa-brands fa-tiktok"></i></a>
-          <a href="https://instagram.com/TON_PSEUDO" target="_blank" rel="noopener" aria-label="Instagram"><i
-              class="fa-brands fa-instagram"></i></a>
-        </div>
+        <div class="pied-reseaux" id="piedReseaux"></div>
       </div>
 
       <div class="pied-bas">
-        <p>&copy; <span id="anneeCourante"></span> Gninoue Jean-Marc — <span data-i18n="footer.droits">Tous droits
-            réservés.</span></p>
+        <p>&copy; <span id="anneeCourante"></span> Gninoue Jean-Marc — <span data-i18n="footer.droits"></span></p>
+        <p class="pied-credits" id="piedCredits"></p>
       </div>
 
     </div>
   </footer>
-  <!--bulle whatsapp-->
-  <a href="https://wa.me/2250103508128?text=Bonjour%2C%20je%20vous%20contacte%20depuis%20votre%20portfolio"
-    target="_blank" rel="noopener" class="bulle-whatsapp" aria-label="Me contacter sur WhatsApp">
-    <i class="fa-brands fa-whatsapp"></i>
+
+  <a href="#" target="_blank" rel="noopener" class="bulle-whatsapp" id="bulleWhatsapp"
+    data-i18n-aria="commun.whatsapp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
     <span class="anneau-pulse"></span>
   </a>
+
+  <!-- Voile de transition entre deux thèmes -->
+  <div class="voile-theme" id="voileTheme" aria-hidden="true">
+    <span class="voile-chargeur"></span>
+  </div>
+  <p class="annonce-lecteur" id="annonceLecteur" aria-live="polite"></p>
+
+  <script src="js/donnees.js"></script>
+  <script src="js/traductions.js"></script>
   <script src="js/commun.js"></script>
-  <script src="js/theme-professionnel.js"></script>
-  <script src="js/theme-gaming.js"></script>
-  <script src="js/theme-personnel.js"></script>
 </body>
 
 </html>

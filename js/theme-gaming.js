@@ -1,4 +1,15 @@
-// THÈME GAMING — à construire
-// Écoute "changementTheme" (déclenché par commun.js)
-// pour réagir quand ce thème devient actif, et
-// "changementLangue" si ce thème a son propre contenu à traduire.
+// ============================================
+// THÈME GAMING — version provisoire (remplacée par la suite)
+// ============================================
+(function () {
+  enregistrerTheme('gaming', {
+    monter(zone) {
+      zone.innerHTML = `
+        <section class="gaming-provisoire">
+          <h1 data-i18n="theme.gaming"></h1>
+          <p data-i18n="commun.a-venir"></p>
+        </section>`;
+    },
+    demonter() {}
+  });
+})();

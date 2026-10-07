@@ -1,3 +1,8 @@
-/*THÈME STYLE PERSONNEL — à construire
-   Scoper toutes les règles sous
-   body[data-theme="personnel"].*/
+/* THÈME PERSONNEL — version provisoire */
+body[data-theme="personnel"] .personnel-provisoire{
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  color: #fff;
+}
