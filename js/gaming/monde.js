@@ -176,11 +176,16 @@
 
     // Ruines des projets : une stèle par projet de donnees.js, en cercle
     const steles = [];
+    // Au-delà de 10 projets, un second cercle intérieur évite que les stèles se chevauchent
     const nombreSteles = donnees.projets.length;
+    const nombreExterieur = nombreSteles > 10 ? Math.ceil(nombreSteles * 0.62) : nombreSteles;
     for (let i = 0; i < nombreSteles; i++) {
-      const angle = -Math.PI / 2 + (i / nombreSteles) * Math.PI * 2 + Math.PI / nombreSteles;
-      const x = centre(ZONES.ruines.x) + Math.cos(angle) * 84;
-      const y = centre(ZONES.ruines.y) + Math.sin(angle) * 70;
+      const interieur = i >= nombreExterieur;
+      const rang = interieur ? i - nombreExterieur : i;
+      const total = interieur ? nombreSteles - nombreExterieur : nombreExterieur;
+      const angle = -Math.PI / 2 + (rang / total) * Math.PI * 2 + Math.PI / total;
+      const x = centre(ZONES.ruines.x) + Math.cos(angle) * (interieur ? 44 : 88);
+      const y = centre(ZONES.ruines.y) + Math.sin(angle) * (interieur ? 36 : 72);
       steles.push(ajouter({
         type: 'stele', x, y, indice: i, sprite: sprites.stele, ox: 8, oy: 29, solide: { l: 12, h: 6 },
         lumiere: { r: 22, couleur: '127,193,255', intensite: 0.45, decalageY: -16 },

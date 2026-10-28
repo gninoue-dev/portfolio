@@ -256,6 +256,25 @@ body[data-theme="professionnel"] ::selection{ background: var(--pro-bleu); color
 .pro-accueil-texte .pro-entree:nth-child(5){ animation-delay: .45s; }
 .pro-accueil-texte .pro-entree:nth-child(6){ animation-delay: .55s; }
 .pro-accueil-visuel.pro-entree{ animation-delay: .3s; }
+/* Halo qui suit la souris (position fournie par theme-professionnel.js) */
+.pro-carte-projet::after{
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(320px circle at var(--halo-x, 50%) var(--halo-y, 0%), rgba(127,193,255,0.13), transparent 60%);
+  opacity: 0;
+  transition: opacity .35s var(--transition);
+}
+.pro-carte-projet:hover::after{ opacity: 1; }
+
+/* Filtre des projets : durée des glissements (View Transitions API) */
+::view-transition-group(*){
+  animation-duration: .45s;
+  animation-timing-function: cubic-bezier(.22,.9,.32,1);
+}
+
 @keyframes proEntree{ to{ opacity: 1; transform: none; } }
 
 /* ---------- Photo ---------- */
@@ -626,6 +645,7 @@ body[data-theme="professionnel"] ::selection{ background: var(--pro-bleu); color
   gap: 26px;
 }
 .pro-carte-projet{
+  position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
