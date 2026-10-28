@@ -127,7 +127,7 @@ const donnees = {
       },
       technos: ['React', 'Supabase', 'Vite'],
       categorie: 'web',
-      image: '',
+      image: 'res/projets/chap-chap.webp',
       lienCode: 'https://github.com/gninoue-dev/CHAP-CHAP',
       lienDemo: 'https://gninoue-dev.github.io/CHAP-CHAP/',
       statut: 'encours'
@@ -239,7 +239,7 @@ const donnees = {
       },
       technos: ['JavaScript', 'Python', 'Kotlin', 'GDScript'],
       categorie: 'outil',
-      image: '',
+      image: 'res/projets/biblio-code.webp',
       lienCode: 'https://github.com/gninoue-dev/biblio-code',
       lienDemo: 'https://gninoue-dev.github.io/biblio-code/demo/',
       statut: 'encours'
@@ -282,7 +282,7 @@ const donnees = {
       },
       technos: ['HTML', 'CSS', 'JavaScript'],
       categorie: 'web',
-      image: '',
+      image: 'res/projets/gninou-food.webp',
       lienCode: 'https://github.com/gninoue-dev/GNINOU-FOOD',
       lienDemo: 'https://gninoue-dev.github.io/GNINOU-FOOD/',
       statut: 'termine'
@@ -296,7 +296,7 @@ const donnees = {
       },
       technos: ['JavaScript', 'Canvas'],
       categorie: 'jeu',
-      image: '', // capture : 'res/projets/gamerpg.webp'
+      image: 'res/projets/gamerpg.webp',
       lienCode: 'https://github.com/gninoue-dev/GameRpg',
       lienDemo: 'https://gninoue-dev.github.io/GameRpg/',
       statut: 'termine'
@@ -310,7 +310,7 @@ const donnees = {
       },
       technos: ['JavaScript'],
       categorie: 'jeu',
-      image: '', // capture : 'res/projets/snake.webp'
+      image: 'res/projets/snake.webp',
       lienCode: 'https://github.com/gninoue-dev/gameSnake',
       lienDemo: 'https://gninoue-dev.github.io/gameSnake/',
       statut: 'termine'
