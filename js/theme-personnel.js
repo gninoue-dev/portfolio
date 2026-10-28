@@ -6,8 +6,13 @@
 // GSAP est chargé à la demande pour les animations.
 // ============================================
 (function () {
-  const GSAP = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';
-  const SCROLL_TRIGGER = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js';
+  const CDN_GSAP = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/';
+  const GSAP = CDN_GSAP + 'gsap.min.js';
+  const SCROLL_TRIGGER = CDN_GSAP + 'ScrollTrigger.min.js';
+  // Bonus facultatifs : sans eux, les animations de base restent
+  const SPLIT_TEXT = CDN_GSAP + 'SplitText.min.js';
+  const SCRAMBLE_TEXT = CDN_GSAP + 'ScrambleTextPlugin.min.js';
+  const KATAKANA_BROUILLAGE = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワン';
   const ICONES_CATEGORIES = {
     jeu: 'fa-solid fa-gamepad', web: 'fa-solid fa-globe', ia: 'fa-solid fa-wand-magic-sparkles', outil: 'fa-solid fa-screwdriver-wrench',
     logiciel: 'fa-solid fa-microchip', creation: 'fa-solid fa-palette'
@@ -339,10 +344,37 @@
       animerAvecObservateur();
       return;
     }
+    const bonus = await Promise.allSettled([chargerBibliotheque(SPLIT_TEXT), chargerBibliotheque(SCRAMBLE_TEXT)]);
     if (!zone || !window.gsap) return;
-    gsap.registerPlugin(ScrollTrigger);
+    const avecSplit = bonus[0].status === 'fulfilled' && window.SplitText;
+    const avecBrouillage = bonus[1].status === 'fulfilled' && window.ScrambleTextPlugin;
+    gsap.registerPlugin(ScrollTrigger, ...(avecSplit ? [SplitText] : []), ...(avecBrouillage ? [ScrambleTextPlugin] : []));
     racine().classList.add('perso-avec-gsap');
     contexteGsap = gsap.context(() => {
+      // sous-titre : le texte se « décode » depuis des katakana
+      const sousTitre = zone.querySelector('.perso-sous-titre');
+      if (avecBrouillage && sousTitre) {
+        gsap.from(sousTitre, { duration: 1.4, delay: .55, ease: 'none', scrambleText: { text: '{original}', chars: KATAKANA_BROUILLAGE, speed: .6 } });
+      }
+
+      // titres de chapitre : lettres qui jaillissent d'un masque, comme un panneau qui s'ouvre
+      if (avecSplit) {
+        gsap.utils.toArray('.perso-entete-chapitre h2').forEach(titre => {
+          SplitText.create(titre, {
+            type: 'chars', mask: 'chars', autoSplit: true,
+            onSplit: self => gsap.from(self.chars, {
+              yPercent: 110, rotate: 12, duration: .55, stagger: .03, ease: 'back.out(2)',
+              scrollTrigger: { trigger: titre, start: 'top 85%', once: true }
+            })
+          });
+        });
+      }
+
+      // numéros de chapitre : impact façon case de manga
+      gsap.utils.toArray('.perso-numero-chapitre').forEach(numero => {
+        gsap.from(numero, { scale: 2.2, rotate: -14, opacity: 0, duration: .45, ease: 'power4.out', scrollTrigger: { trigger: numero, start: 'top 85%', once: true } });
+      });
+
       // couverture : entrée en "coup de poing"
       gsap.from('.perso-titre .perso-glitch', { x: -80, skewX: -20, opacity: 0, duration: .7, stagger: .12, ease: 'power4.out' });
       gsap.from('.perso-case-photo', { scale: .7, rotate: 6, opacity: 0, duration: .9, ease: 'back.out(1.6)', delay: .15 });
@@ -352,11 +384,16 @@
       gsap.to('.perso-kanji-vertical', { yPercent: 18, ease: 'none', scrollTrigger: { trigger: '.perso-couverture', start: 'top top', end: 'bottom top', scrub: true } });
 
       // cases de manga : chacune entre avec un léger angle
-      gsap.utils.toArray('.perso-anime').forEach((el, i) => {
+      gsap.utils.toArray('.perso-anime:not(.perso-volume)').forEach((el, i) => {
         gsap.fromTo(el, { y: 60, rotate: i % 2 ? 1.5 : -1.5, opacity: 0 }, {
           y: 0, rotate: 0, opacity: 1, duration: .8, ease: 'power3.out',
           scrollTrigger: { trigger: el, start: 'top 88%', once: true }
         });
+      });
+      gsap.set('#persoEtagere .perso-volume', { opacity: 0 });
+      ScrollTrigger.batch('#persoEtagere .perso-volume', {
+        start: 'top 90%', once: true,
+        onEnter: lot => gsap.fromTo(lot, { y: 80, rotateY: -35, opacity: 0 }, { y: 0, rotateY: 0, opacity: 1, duration: .7, stagger: .08, ease: 'power3.out', overwrite: true, clearProps: 'transform' })
       });
       gsap.utils.toArray('.perso-kanji-titre').forEach(el => {
         gsap.fromTo(el, { yPercent: 40 }, { yPercent: -40, ease: 'none', scrollTrigger: { trigger: el, scrub: true } });

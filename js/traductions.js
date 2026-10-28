@@ -48,10 +48,10 @@ const traductions = {
     // ---------- Contenu partagé ----------
     'profil.role-court': 'Développeur Full Stack junior',
     'apropos.titre': 'À propos de moi',
-    'apropos.p1': "Passionné par l'informatique et les jeux vidéo depuis l'enfance, j'ai naturellement choisi de transformer cette passion en véritable projet professionnel. Après l'obtention de mon baccalauréat, j'ai intégré la filière Informatique et Génie Logiciel, où je poursuis actuellement ma deuxième année de licence.",
+    'apropos.p1': "Passionné par l'informatique et les jeux vidéo depuis l'enfance, j'ai fait de cette passion mon projet professionnel. Après mon baccalauréat, j'ai intégré la filière Informatique et Génie Logiciel, où je suis aujourd'hui en troisième année de licence.",
     'apropos.p2': "En tant que développeur Full Stack junior, je conçois et développe des sites web, des applications et des bases de données, de la conception à la mise en production. J'aime transformer des idées en solutions concrètes, fonctionnelles et intuitives.",
     'apropos.p3': "Au-delà du développement, je m'intéresse au graphisme, à la modélisation 3D, au montage vidéo et à la maintenance informatique. Ces compétences, que je développe en complément de la programmation, me permettent de créer des projets plus complets, à la croisée de la technologie, de la créativité et de la technique.",
-    'apropos.etudes': 'Licence 2 · Informatique et Génie Logiciel',
+    'apropos.etudes': 'Licence 3 · Informatique et Génie Logiciel',
     'apropos.objectif': 'Objectif : devenir expert en développement de jeux vidéo',
     'apropos.chiffre-competences': 'Compétences',
     'apropos.chiffre-projets': 'Projets',
@@ -222,7 +222,7 @@ const traductions = {
     'succes.eclair-desc': "Terminer l'aventure en moins de 5 minutes",
     // ---------- Thème Style personnel ----------
     'perso.volume': 'Volume',
-    'perso.sous-titre': 'Développeur Full Stack, créateur de jeux vidéo et monteur vidéo',
+    'perso.sous-titre': 'Développeur Full Stack, créateur de jeux vidéo, monteur vidéo… et otaku assumé',
     'perso.commandes': 'whoami --role fullstack|compile --langage c++ --mode passion|render --montage after-effects|git push origin reves',
     'perso.lire-volumes': 'Lire les volumes',
     'perso.ecrire': "M'écrire",
@@ -296,10 +296,10 @@ const traductions = {
     // ---------- Shared content ----------
     'profil.role-court': 'Junior Full Stack Developer',
     'apropos.titre': 'About me',
-    'apropos.p1': "Passionate about computers and video games since childhood, I naturally turned that passion into a real professional path. After high school, I joined the Computer Science and Software Engineering program, where I am now in the second year of my bachelor's degree.",
+    'apropos.p1': "Passionate about computers and video games since childhood, I turned that passion into my professional path. After high school, I joined the Computer Science and Software Engineering program, where I am now in the third year of my bachelor's degree.",
     'apropos.p2': 'As a junior Full Stack developer, I design and build websites, applications and databases, from concept to production. I love turning ideas into concrete, functional and intuitive solutions.',
     'apropos.p3': 'Beyond development, I am into graphic design, 3D modeling, video editing and computer maintenance. These skills, which I grow alongside programming, let me build more complete projects where technology, creativity and craft meet.',
-    'apropos.etudes': "Bachelor's year 2 · Computer Science and Software Engineering",
+    'apropos.etudes': "Bachelor's year 3 · Computer Science and Software Engineering",
     'apropos.objectif': 'Goal: become an expert in video game development',
     'apropos.chiffre-competences': 'Skills',
     'apropos.chiffre-projets': 'Projects',
@@ -470,7 +470,7 @@ const traductions = {
     'succes.eclair-desc': 'Finish the adventure in under 5 minutes',
     // ---------- Personal style theme ----------
     'perso.volume': 'Volume',
-    'perso.sous-titre': 'Full Stack developer, video game creator and video editor',
+    'perso.sous-titre': 'Full Stack developer, video game creator, video editor… and proud otaku',
     'perso.commandes': 'whoami --role fullstack|compile --lang c++ --mode passion|render --edit after-effects|git push origin dreams',
     'perso.lire-volumes': 'Read the volumes',
     'perso.ecrire': 'Write to me',

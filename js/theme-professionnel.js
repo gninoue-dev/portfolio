@@ -256,7 +256,7 @@
         ? `<a href="${projet.lienDemo}" target="_blank" rel="noopener" class="pro-lien-projet pro-lien-demo"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> ${t('projets.demo')}</a>`
         : '';
       return `
-        <article class="pro-carte-projet pro-revele${projet.vedette ? ' pro-projet-vedette' : ''}" style="--delai:${(index % 3) * 80}ms">
+        <article class="pro-carte-projet pro-revele${projet.vedette ? ' pro-projet-vedette' : ''}" style="--delai:${(index % 3) * 80}ms; view-transition-name: pro-projet-${projet.id}">
           <div class="pro-projet-image">
             ${visuel}
             <span class="pro-badge-statut pro-statut-${projet.statut}">${t(`projets.${projet.statut}`)}</span>
@@ -356,9 +356,27 @@
       const bouton = e.target.closest('[data-filtre]');
       if (!bouton) return;
       filtreProjets = bouton.dataset.filtre;
-      rendreFiltres();
-      rendreProjets();
+      const filtrer = () => {
+        rendreFiltres();
+        rendreProjets();
+        // pendant la transition, les cartes sont déjà là : pas d'apparition au défilement
+        zoneCourante.querySelectorAll('#proGrilleProjets .pro-revele').forEach(carte => carte.classList.add('visible'));
+      };
+      // Les cartes glissent vers leur nouvelle place (navigateurs récents)
+      if (document.startViewTransition && !mouvementReduit.matches) document.startViewTransition(filtrer);
+      else filtrer();
     });
+
+    // Halo lumineux qui suit la souris sur les cartes de projet
+    if (window.matchMedia('(pointer: fine)').matches) {
+      zoneCourante.querySelector('#proGrilleProjets').addEventListener('pointermove', (e) => {
+        const carte = e.target.closest('.pro-carte-projet');
+        if (!carte) return;
+        const r = carte.getBoundingClientRect();
+        carte.style.setProperty('--halo-x', `${e.clientX - r.left}px`);
+        carte.style.setProperty('--halo-y', `${e.clientY - r.top}px`);
+      });
+    }
 
     zoneCourante.querySelectorAll('[data-aller-theme]').forEach(bouton => {
       bouton.addEventListener('click', () => appliquerTheme(bouton.dataset.allerTheme));

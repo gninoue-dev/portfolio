@@ -278,6 +278,33 @@ function attendre(ms) {
   return new Promise(resoudre => window.setTimeout(resoudre, ms));
 }
 
+// ---------- Rideau de transition ----------
+// Durée de l'entrée du rideau pour chaque thème d'arrivée (voir commun.css)
+const DUREE_ENTREE_VOILE = { professionnel: 500, gaming: 520, personnel: 470 };
+let minuterieSortieVoile = null;
+
+function preparerVoile(voile, nom) {
+  voile.dataset.vers = nom;
+  const pixels = voile.querySelector('.voile-pixels');
+  if (pixels && !pixels.childElementCount) {
+    // 16 × 9 cases, chacune avec un délai au hasard : la page se pixellise
+    const fragment = document.createDocumentFragment();
+    for (let i = 0; i < 144; i++) {
+      const caseVoile = document.createElement('span');
+      caseVoile.style.setProperty('--d', Math.random().toFixed(2));
+      fragment.appendChild(caseVoile);
+    }
+    pixels.appendChild(fragment);
+  }
+}
+
+function ouvrirVoile(voile) {
+  voile.classList.remove('visible');
+  voile.classList.add('sortie');
+  window.clearTimeout(minuterieSortieVoile);
+  minuterieSortieVoile = window.setTimeout(() => voile.classList.remove('sortie'), 800);
+}
+
 async function appliquerTheme(nom, options = {}) {
   if (!FICHIERS_THEMES[nom]) nom = 'professionnel';
   if (nom === themeCourant && !options.forcer) return;
@@ -289,15 +316,17 @@ async function appliquerTheme(nom, options = {}) {
     const premierChargement = themeCourant === null;
     const ancien = themeCourant;
 
+    preparerVoile(voile, nom);
+    voile.classList.remove('sortie');
     voile.classList.add('visible');
-    if (!premierChargement && !mouvementReduit.matches) await attendre(320);
+    if (!premierChargement && !mouvementReduit.matches) await attendre(DUREE_ENTREE_VOILE[nom]);
 
     try {
       const fichiers = FICHIERS_THEMES[nom];
       await Promise.all([chargerFichier('css', fichiers.css), chargerFichier('js', fichiers.js)]);
     } catch (erreur) {
       console.warn(erreur.message);
-      voile.classList.remove('visible');
+      ouvrirVoile(voile);
       annoncerLecteur(t('commun.erreur-theme'));
       if (premierChargement && nom !== 'professionnel') {
         changementEnCours = null;
@@ -325,8 +354,12 @@ async function appliquerTheme(nom, options = {}) {
     majEtatEntete();
     rendrePiedPage();
 
-    document.body.classList.remove('chargement');
-    window.requestAnimationFrame(() => voile.classList.remove('visible'));
+    // Fin du chargement et départ du rideau dans la même image :
+    // sinon l'animation d'entrée du rideau rejouerait un instant
+    window.requestAnimationFrame(() => {
+      ouvrirVoile(voile);
+      document.body.classList.remove('chargement');
+    });
     if (!premierChargement) annoncerLecteur(t('commun.theme-change', { theme: t(`theme.${nom}`) }));
     document.dispatchEvent(new CustomEvent('changementTheme', { detail: { theme: nom } }));
   })();

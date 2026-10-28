@@ -105,17 +105,31 @@ const donnees = {
       vedette: true
     },
     {
-      id: 'zaomon',
-      nom: 'Zaomon',
+      id: 'worldnime2d',
+      nom: 'Worldnime2D',
       description: {
-        fr: "Jeu d'action-plateforme en cours de développement : combos à trois coups et sprites pixel art retravaillés. L'histoire reste secrète jusqu'à la sortie.",
-        en: 'Action platformer in development: three-hit combos and reworked pixel art sprites. The story stays secret until release.'
+        fr: "Éditeur d'animation 2D par squelette, libre et open source, pour Windows et Linux : os, maillages, contraintes, skins, export et runtime Godot 4. Accompagné d'une formation vidéo de 22 leçons.",
+        en: 'Free and open source 2D skeletal animation editor for Windows and Linux: bones, meshes, constraints, skins, export and a Godot 4 runtime. Comes with a 22-lesson video course.'
       },
-      technos: ['Godot 4', 'GDScript', 'Blender'],
-      categorie: 'jeu',
-      image: '', // capture : 'res/projets/zaomon.webp'
-      lienCode: 'https://github.com/gninoue-dev/ZAOMON',
+      technos: ['JavaScript', 'Electron', 'PixiJS'],
+      categorie: 'outil',
+      image: '',
+      lienCode: 'https://github.com/gninoue-dev/Worldnime2D',
       lienDemo: '',
+      statut: 'encours'
+    },
+    {
+      id: 'chap-chap',
+      nom: 'CHAP-CHAP',
+      description: {
+        fr: 'Marketplace e-commerce ivoirienne multi-vendeurs : catalogue, panier, commandes, espaces vendeur et administrateur, vitrine 3D.',
+        en: 'Ivorian multi-vendor e-commerce marketplace: catalog, cart, orders, seller and admin areas, 3D showcase.'
+      },
+      technos: ['React', 'Supabase', 'Vite'],
+      categorie: 'web',
+      image: '',
+      lienCode: 'https://github.com/gninoue-dev/CHAP-CHAP',
+      lienDemo: 'https://gninoue-dev.github.io/CHAP-CHAP/',
       statut: 'encours'
     },
     {
@@ -133,6 +147,104 @@ const donnees = {
       statut: 'encours'
     },
     {
+      id: 'tontina',
+      nom: 'Tontina',
+      description: {
+        fr: 'Application web de gestion des tontines : membres, tirage au sort, cotisations en espèces ou en mobile money, pénalités, rappels et page publique de transparence.',
+        en: 'Web app for managing tontines (rotating savings groups): members, draw, cash or mobile money contributions, penalties, reminders and a public transparency page.'
+      },
+      technos: ['Laravel', 'PHP', 'Tailwind CSS', 'SQLite'],
+      categorie: 'web',
+      image: '',
+      lienCode: 'https://github.com/gninoue-dev/tontina',
+      lienDemo: '',
+      statut: 'encours'
+    },
+    {
+      id: 'djoman',
+      nom: 'DJOMAN',
+      description: {
+        fr: "Application Android d'organisation personnelle pensée pour l'Afrique : emploi du temps, habitudes, objectifs et minuteur de concentration, en français et en anglais. Nouvelle version de FocusFlow.",
+        en: 'Android personal organization app designed for Africa: schedule, habits, goals and focus timer, in French and English. New version of FocusFlow.'
+      },
+      technos: ['Kotlin', 'Jetpack Compose', 'Room'],
+      categorie: 'outil',
+      image: '',
+      lienCode: 'https://github.com/gninoue-dev/FocusFlow',
+      lienDemo: '',
+      statut: 'encours'
+    },
+    {
+      id: 'ethni-warriors',
+      nom: 'Ethni Warriors',
+      description: {
+        fr: 'Jeu de combat 1 contre 1 pour mobile, en cours de développement.',
+        en: 'One-on-one fighting game for mobile, in development.'
+      },
+      technos: ['Godot 4', 'GDScript', 'Blender'],
+      categorie: 'jeu',
+      image: '',
+      lienCode: '', // dépôt privé
+      lienDemo: '',
+      statut: 'encours'
+    },
+    {
+      id: 'zaomon',
+      nom: 'Zaomon',
+      description: {
+        fr: "Jeu d'action-plateforme en cours de développement : combos à trois coups et sprites pixel art retravaillés. L'histoire reste secrète jusqu'à la sortie.",
+        en: 'Action platformer in development: three-hit combos and reworked pixel art sprites. The story stays secret until release.'
+      },
+      technos: ['Godot 4', 'GDScript', 'Blender'],
+      categorie: 'jeu',
+      image: '', // capture : 'res/projets/zaomon.webp'
+      lienCode: 'https://github.com/gninoue-dev/ZAOMON',
+      lienDemo: '',
+      statut: 'encours'
+    },
+    {
+      id: 'bot-trading',
+      nom: { fr: 'Bot de trading', en: 'Trading bot' },
+      description: {
+        fr: "Robot de trading en Python sur l'or (XAUUSD) pour MetaTrader 5 : cassure de canal Donchian en H4 avec filtre de tendance, validée en walk-forward, et gestion stricte du risque.",
+        en: 'Python trading bot for gold (XAUUSD) on MetaTrader 5: H4 Donchian channel breakout with a trend filter, walk-forward validated, with strict risk management.'
+      },
+      technos: ['Python', 'MetaTrader 5'],
+      categorie: 'outil',
+      image: '', // capture : 'res/projets/bot-trading.webp'
+      lienCode: 'https://github.com/gninoue-dev/Bot_trading',
+      lienDemo: '',
+      statut: 'encours'
+    },
+    {
+      id: 'fond-vivant',
+      nom: 'Fond Vivant',
+      description: {
+        fr: "Fonds d'écran animés et diaporamas de photos pour Linux et Windows, fluides à 60 images par seconde et adaptés à la taille de l'écran.",
+        en: 'Animated wallpapers and photo slideshows for Linux and Windows, smooth at 60 frames per second and fitted to the screen size.'
+      },
+      technos: ['C', 'Python', 'PySide6', 'mpv', 'FFmpeg'],
+      categorie: 'outil',
+      image: '',
+      lienCode: 'https://github.com/gninoue-dev/fond-vivant',
+      lienDemo: '',
+      statut: 'encours'
+    },
+    {
+      id: 'biblio-code',
+      nom: 'biblio-code',
+      description: {
+        fr: 'Bibliothèque de modules réutilisables et testés : web, banque et fintech ivoirienne, Android, Godot et Python, avec une page de démonstration interactive.',
+        en: 'Library of reusable, tested modules: web, Ivorian banking and fintech, Android, Godot and Python, with an interactive demo page.'
+      },
+      technos: ['JavaScript', 'Python', 'Kotlin', 'GDScript'],
+      categorie: 'outil',
+      image: '',
+      lienCode: 'https://github.com/gninoue-dev/biblio-code',
+      lienDemo: 'https://gninoue-dev.github.io/biblio-code/demo/',
+      statut: 'encours'
+    },
+    {
       id: 'examsecure',
       nom: 'ExamSecure',
       description: {
@@ -142,22 +254,7 @@ const donnees = {
       technos: ['PHP', 'MySQL', 'JavaScript'],
       categorie: 'web',
       image: '', // capture : 'res/projets/examsecure.webp'
-      lienCode: '', // encore en local : mettre l'URL GitHub ici une fois publié
-      codeBientot: true,
-      lienDemo: '',
-      statut: 'encours'
-    },
-    {
-      id: 'bot-trading',
-      nom: { fr: 'Bot de trading', en: 'Trading bot' },
-      description: {
-        fr: "Robot de day trading en Python, spécialisé sur l'or (XAUUSD) : détection de figures chartistes et de niveaux de Fibonacci, gestion du risque et backtests.",
-        en: 'Python day-trading bot focused on gold (XAUUSD): chart pattern and Fibonacci level detection, risk management and backtesting.'
-      },
-      technos: ['Python', 'MetaTrader 5'],
-      categorie: 'outil',
-      image: '', // capture : 'res/projets/bot-trading.webp'
-      lienCode: 'https://github.com/gninoue-dev/Bot_trading',
+      lienCode: 'https://github.com/gninoue-dev/projetweb',
       lienDemo: '',
       statut: 'encours'
     },
@@ -177,18 +274,18 @@ const donnees = {
       statut: 'termine'
     },
     {
-      id: 'focusflow',
-      nom: 'FocusFlow',
+      id: 'gninou-food',
+      nom: 'GNINOU-FOOD',
       description: {
-        fr: 'Mini-application de gestion du temps et des priorités.',
-        en: 'Small time and priority management application.'
+        fr: "Site vitrine d'un fast-food ivoirien : menu, services et commande.",
+        en: 'Showcase website for an Ivorian fast-food restaurant: menu, services and ordering.'
       },
-      technos: ['Java'],
-      categorie: 'outil',
-      image: '', // capture : 'res/projets/focusflow.webp'
-      lienCode: 'https://github.com/gninoue-dev/FocusFlow',
-      lienDemo: '',
-      statut: 'encours'
+      technos: ['HTML', 'CSS', 'JavaScript'],
+      categorie: 'web',
+      image: '',
+      lienCode: 'https://github.com/gninoue-dev/GNINOU-FOOD',
+      lienDemo: 'https://gninoue-dev.github.io/GNINOU-FOOD/',
+      statut: 'termine'
     },
     {
       id: 'gamerpg',
